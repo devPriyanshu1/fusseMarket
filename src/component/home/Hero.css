@@ -50,6 +50,7 @@
 }
 
 @keyframes pulse-subtle {
+@keyframes pulse-subtle {
   0%,
   100% {
     opacity: 1;
@@ -68,7 +69,28 @@
   }
   100% {
     background-position: 0% 50%;
+    opacity: 0.8;
   }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
 }
 
 .animate-fade-in {
