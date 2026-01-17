@@ -1,51 +1,100 @@
 import Button from "../common/Button";
 import Container from "../common/Container";
+import { CheckCircle2 } from "lucide-react";
 
 const CTASection = () => {
   return (
-    <section className="relative bg-gradient-to-br from-primary via-primary to-secondary text-white py-24 overflow-hidden">
-      {/* Background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full opacity-20">
-          <div className="absolute top-20 left-20 w-32 h-32 bg-white/10 rounded-full blur-xl"></div>
-          <div className="absolute bottom-20 right-20 w-40 h-40 bg-white/5 rounded-full blur-2xl"></div>
-        </div>
+    <section className="relative bg-gradient-to-br from-indigo-950 via-indigo-900 to-purple-950 text-white py-32 overflow-hidden">
+      {/* Animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Gradient orbs */}
+        <div className="absolute -top-40 -left-40 w-80 h-80 bg-indigo-600/25 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-indigo-500/15 rounded-full blur-3xl"></div>
       </div>
 
-      <Container className="relative z-10 text-center">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Ready to Grow Your Business?
+      {/* Grid pattern overlay */}
+      <div className="absolute inset-0 opacity-5">
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white"
+          style={{
+            backgroundSize: "50px 50px",
+            backgroundImage:
+              "linear-gradient(rgba(255,255,255,.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.1) 1px, transparent 1px)",
+          }}
+        ></div>
+      </div>
+
+      <Container className="relative z-10">
+        <div className="max-w-5xl mx-auto text-center">
+          {/* Main heading */}
+          <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            Ready to{" "}
+            <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-blue-300 bg-clip-text text-transparent">
+              Transform
+            </span>{" "}
+            Your Business?
           </h2>
-          <p className="text-xl text-white/90 mb-10 max-w-2xl mx-auto">
-            Let's discuss how we can help you achieve your digital goals and take your brand to the next level.
+
+          {/* Subheading */}
+          <p className="text-lg md:text-xl text-slate-200 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Discover how our proven strategies and innovative solutions can
+            elevate your brand and drive exceptional growth.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button href="/contact" size="lg" className="shadow-2xl">
+          {/* CTA Buttons */}
+          <div className="flex flex-col sm:flex-row justify-center gap-4 mb-16">
+            <Button
+              href="/contact"
+              size="lg"
+              className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600  hover:to-cyan-600 text-white font-semibold rounded px-8 py-4 hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            >
               Get Started Today
-              <span className="ml-2">→</span>
+              <span className="ml-2 text-xl">→</span>
             </Button>
 
-            <Button href="/services" variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary shadow-2xl">
+            <Button
+              href="/services"
+              variant="outline"
+              size="lg"
+              className="border-2 border-slate-300 text-white font-semibold rounded px-8 py-4 hover:bg-white/10 hover:border-white transition-all duration-300 backdrop-blur-sm shadow-lg hover:shadow-xl"
+            >
               View Our Services
             </Button>
           </div>
 
           {/* Trust indicators */}
-          <div className="mt-12 flex flex-wrap justify-center items-center gap-8 text-white/70">
-            <div className="flex items-center gap-2">
-              <span className="text-green-400">✓</span>
-              <span>Free Consultation</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-green-400">✓</span>
-              <span>30-Day Money Back</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-green-400">✓</span>
-              <span>24/7 Support</span>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-8 border-t border-slate-500/30">
+            {[
+              {
+                icon: CheckCircle2,
+                text: "Free Consultation",
+                color: "text-emerald-400",
+              },
+              {
+                icon: CheckCircle2,
+                text: "30-Day Money Back",
+                color: "text-emerald-400",
+              },
+              {
+                icon: CheckCircle2,
+                text: "24/7 Priority Support",
+                color: "text-emerald-400",
+              },
+            ].map((item, i) => {
+              const IconComponent = item.icon;
+              return (
+                <div
+                  key={i}
+                  className="flex flex-col items-center gap-3 py-4 hover:bg-white/5 rounded-lg transition-colors px-4"
+                >
+                  <IconComponent size={28} className={item.color} />
+                  <span className="text-slate-200 font-medium">
+                    {item.text}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </Container>
