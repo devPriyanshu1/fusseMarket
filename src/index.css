@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-secondary: #1e40af;
+  --color-light: #f8fafc;
+}
+
+/* Custom animations */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
