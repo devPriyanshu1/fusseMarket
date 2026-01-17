@@ -1,4 +1,4 @@
-/* Hero Component Styles */
+/* Hero Component Styles - Industry Professional */
 
 @keyframes fade-in {
   from {
@@ -11,20 +11,56 @@
   }
 }
 
-.animate-fade-in {
-  animation: fade-in 1s ease-out;
-}
-
-@keyframes pulse-delay {
+@keyframes pulse-subtle {
   0%,
   100% {
     opacity: 1;
   }
   50% {
-    opacity: 0.5;
+    opacity: 0.8;
   }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
 }
 
 .delay-1000 {
   animation-delay: 1s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+.hero-gradient-bg {
+  background: linear-gradient(135deg, #1e3a8a 0%, #0f766e 50%, #0f172a 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 15s ease infinite;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+}
+
+.hero-accent {
+  color: #dc2626;
+  font-weight: 700;
 }
