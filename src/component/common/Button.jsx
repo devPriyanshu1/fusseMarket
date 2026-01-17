@@ -9,19 +9,22 @@ const Button = ({
   className = "",
   ...props
 }) => {
-  const baseClasses = "inline-flex items-center justify-center font-semibold rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
+  const baseClasses = "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
 
   const variants = {
-    primary: "bg-primary text-white hover:bg-primary/90 hover:scale-105 shadow-lg hover:shadow-xl focus:ring-primary",
-    secondary: "bg-secondary text-white hover:bg-secondary/90 hover:scale-105 shadow-lg hover:shadow-xl focus:ring-secondary",
+    primary: "bg-primary text-white hover:bg-primary/90 hover:shadow-xl shadow-lg hover:scale-105 focus:ring-primary",
+    secondary: "bg-secondary text-white hover:bg-secondary/90 hover:shadow-xl shadow-lg hover:scale-105 focus:ring-secondary",
+    accent: "bg-accent text-white hover:bg-accent/90 hover:shadow-xl shadow-lg hover:scale-105 focus:ring-accent",
     outline: "border-2 border-primary text-primary hover:bg-primary hover:text-white hover:scale-105 focus:ring-primary",
     ghost: "text-primary hover:bg-primary/10 hover:scale-105 focus:ring-primary",
+    success: "bg-success text-white hover:bg-success/90 hover:shadow-xl shadow-lg hover:scale-105 focus:ring-success",
   };
 
   const sizes = {
     sm: "px-4 py-2 text-sm",
     md: "px-6 py-3 text-base",
     lg: "px-8 py-4 text-lg",
+    xl: "px-10 py-5 text-lg font-bold",
   };
 
   const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`;

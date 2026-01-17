@@ -5,6 +5,7 @@ const Card = ({
   shadow = "md",
   rounded = "xl",
   padding = "6",
+  variant = "light",
   ...props
 }) => {
   const shadows = {
@@ -33,11 +34,18 @@ const Card = ({
     8: "p-8",
   };
 
-  const hoverClass = hover ? "hover:shadow-xl hover:-translate-y-1 transition-all duration-300" : "";
+  const variants = {
+    light: "bg-white border border-gray-200",
+    primary: "bg-primary/5 border border-primary/10",
+    secondary: "bg-secondary/5 border border-secondary/10",
+    dark: "bg-gray-900 text-white border border-gray-800",
+  };
+
+  const hoverClass = hover ? "hover:shadow-xl hover:border-primary/30 hover:-translate-y-1 transition-all duration-300" : "";
 
   return (
     <div
-      className={`bg-white ${shadows[shadow]} ${roundedClasses[rounded]} ${paddingClasses[padding]} ${hoverClass} ${className}`}
+      className={`${variants[variant]} ${shadows[shadow]} ${roundedClasses[rounded]} ${paddingClasses[padding]} ${hoverClass} ${className}`}
       {...props}
     >
       {children}
