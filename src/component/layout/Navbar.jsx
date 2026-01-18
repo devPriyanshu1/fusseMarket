@@ -1,23 +1,22 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "../../assets/logo.png";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isContactHovered, setIsContactHovered] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-
-      // Calculate scroll progress
       const scrollTop = window.scrollY;
       const docHeight =
         document.documentElement.scrollHeight - window.innerHeight;
       const scrolled = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       setScrollProgress(scrolled);
+      setIsScrolled(scrollTop > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -32,104 +31,209 @@ const Navbar = () => {
 
   return (
     <header
-      className={`sticky top-0 z-50 transition-all duration-300 shadow-md border-b border-slate-100 ${
-        isScrolled
-          ? "bg-white/70 backdrop-blur-md"
-          : "bg-white/70 backdrop-blur-md"
+      className={`sticky top-0 z-40 transition-all duration-500 ${
+        isScrolled ? "shadow-2xl" : "shadow-sm"
       }`}
+      style={{
+        backgroundColor: isScrolled
+          ? `rgba(255, 255, 255, 0.9)`
+          : `rgba(255, 255, 255, 0.98)`,
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: isScrolled
+          ? `1px solid rgba(139, 92, 246, 0.15)`
+          : `1px solid transparent`,
+      }}
     >
-      {/* Scroll progress indicator */}
+      {/* Scroll progress indicator with glow */}
       <div
-        className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-primary to-blue-600 transition-all duration-200"
-        style={{ width: `${scrollProgress}%` }}
+        className="absolute bottom-0 left-0 h-0.5 transition-all duration-300 ease-out"
+        style={{
+          width: `${scrollProgress}%`,
+          background: `linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%)`,
+          boxShadow: `0 0 12px var(--color-primary), 0 0 20px rgba(139, 92, 246, 0.3)`,
+        }}
       ></div>
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* LOGO */}
+
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex items-center justify-between h-20">
+          {/* LOGO with enhanced hover */}
           <Link
             to="/"
-            className="flex items-center gap-2 transition-transform hover:scale-105 duration-300"
+            className="flex items-center gap-3 transition-all hover:scale-105 duration-300 group"
           >
-            <img
-              src={logo}
-              alt="Fuse Market Logo"
-              className="h-9 w-9 object-contain"
-            />
-            <span className="font-bold text-lg text-slate-900 bg-gradient-to-r from-slate-900 to-primary bg-clip-text text-transparent">
-              Fuse Market
+            <div className="relative">
+              <div
+                className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-md"
+                style={{
+                  background: `linear-gradient(135deg, var(--color-primary), var(--color-accent))`,
+                }}
+              ></div>
+              <img
+                src={logo}
+                alt="Fuse Market Logo"
+                className="h-11 w-11 object-contain relative z-10"
+              />
+            </div>
+            <span
+              className="font-bold text-xl tracking-tight"
+              style={{
+                background: `linear-gradient(135deg, var(--color-primary), var(--color-accent))`,
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              FusseMarket
             </span>
           </Link>
 
-          {/* DESKTOP NAV */}
-          <nav className="hidden md:flex items-center gap-6">
-            {navLinks.map((link) => (
+          {/* DESKTOP NAV with enhanced styling */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.slice(0, 3).map((link) => (
               <NavLink
                 key={link.name}
                 to={link.path}
                 className={({ isActive }) =>
-                  `text-base font-semibold tracking-tight relative transition-all duration-300 px-3 py-1.5 ${
-                    isActive
-                      ? "text-primary border-b-2 border-primary"
-                      : "text-slate-600 hover:text-primary after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-primary after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100"
+                  `text-base font-semibold tracking-tight relative transition-all duration-300 px-4 py-2 group ${
+                    isActive ? "" : ""
                   }`
                 }
+                style={({ isActive }) => ({
+                  color: isActive
+                    ? `var(--color-primary)`
+                    : `var(--color-muted)`,
+                })}
               >
-                {link.name}
+                {({ isActive }) => (
+                  <>
+                    {link.name}
+                    <span
+                      className={`absolute bottom-0 left-0 h-0.5 transition-all duration-300 ${
+                        isActive ? "w-full" : "w-0 group-hover:w-full"
+                      }`}
+                      style={{
+                        background: `linear-gradient(90deg, var(--color-primary), var(--color-accent))`,
+                        boxShadow: isActive
+                          ? `0 0 8px var(--color-primary)`
+                          : "none",
+                      }}
+                    ></span>
+                  </>
+                )}
               </NavLink>
             ))}
-          </nav>
-
-          {/* CTA BUTTON (DESKTOP) */}
-          <div className="hidden md:block">
             <Link
               to="/contact"
-              className="inline-flex items-center rounded-full bg-gradient-to-r from-indigo-950 via-indigo-900 to-purple-950 px-6 py-2.5 text-sm font-semibold text-white hover:shadow-lg hover:scale-105 transition-all duration-300"
+              className="ml-2 inline-flex items-center justify-center px-6 py-2.5 font-semibold rounded-full transition-all duration-300 transform hover:scale-105 hover:shadow-xl relative overflow-hidden group"
+              style={{
+                background: isContactHovered
+                  ? `white`
+                  : `linear-gradient(135deg, var(--color-primary), var(--color-accent))`,
+                color: isContactHovered ? `var(--color-primary)` : `white`,
+                border: isContactHovered
+                  ? `2px solid var(--color-primary)`
+                  : `2px solid transparent`,
+              }}
+              onMouseEnter={() => setIsContactHovered(true)}
+              onMouseLeave={() => setIsContactHovered(false)}
             >
-              Schedule Demo
+              <span className="relative z-10">Contact Us</span>
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300"
+                style={{
+                  background: `radial-gradient(circle at center, var(--color-accent), transparent)`,
+                }}
+              ></div>
             </Link>
-          </div>
+          </nav>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* MOBILE HAMBURGER with smooth animation */}
           <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 transition-colors duration-300"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden relative p-2.5 transition-all duration-300 rounded-xl hover:bg-opacity-10 hover:scale-110"
+            style={{
+              color: `var(--color-primary)`,
+              backgroundColor: isMobileMenuOpen
+                ? `rgba(139, 92, 246, 0.1)`
+                : `transparent`,
+            }}
             aria-label="Toggle menu"
           >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
+            <div className="relative w-6 h-6">
+              <Menu
+                size={24}
+                className={`absolute inset-0 transition-all duration-300 ${
+                  isMobileMenuOpen
+                    ? "opacity-0 rotate-90 scale-50"
+                    : "opacity-100 rotate-0 scale-100"
+                }`}
+              />
+              <X
+                size={24}
+                className={`absolute inset-0 transition-all duration-300 ${
+                  isMobileMenuOpen
+                    ? "opacity-100 rotate-0 scale-100"
+                    : "opacity-0 -rotate-90 scale-50"
+                }`}
+              />
+            </div>
           </button>
         </div>
       </div>
 
-      {/* MOBILE NAV */}
-      {isOpen && (
-        <div className="md:hidden bg-white border-t border-slate-100 animate-in slide-in-from-top-2 duration-300">
-          <div className="px-4 py-4 space-y-2">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  `block text-base font-semibold tracking-tight transition duration-300 px-3 py-2 rounded-lg ${
-                    isActive
-                      ? "text-primary bg-primary bg-opacity-10"
-                      : "text-slate-700 hover:text-slate-900 hover:bg-slate-100"
-                  }`
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
+      {/* MOBILE MENU with enhanced animations */}
+      {isMobileMenuOpen && (
+        <>
+          {/* Enhanced backdrop with blur */}
+          <div
+            className="fixed inset-0 z-40 md:hidden transition-all duration-300"
+            style={{
+              backgroundColor: `rgba(0, 0, 0, 0.5)`,
+              backdropFilter: "blur(12px)",
+              WebkitBackdropFilter: "blur(12px)",
+            }}
+            onClick={() => setIsMobileMenuOpen(false)}
+          />
 
-            <Link
-              to="/contact"
-              onClick={() => setIsOpen(false)}
-              className="block w-full text-center rounded-full bg-gradient-to-r from-primary to-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:shadow-lg active:scale-95 mt-2"
-            >
-              Schedule Demo
-            </Link>
-          </div>
-        </div>
+          {/* Sleek mobile sidebar */}
+          <nav
+            className="fixed top-20 left-0 right-0 z-50 md:hidden animate-in slide-in-from-top-4 duration-300"
+            style={{
+              backgroundColor: `rgba(255, 255, 255, 0.98)`,
+              borderBottom: `1px solid rgba(139, 92, 246, 0.15)`,
+              backdropFilter: "blur(20px)",
+              WebkitBackdropFilter: "blur(20px)",
+              boxShadow: `0 10px 40px rgba(0, 0, 0, 0.1)`,
+            }}
+          >
+            <div className="px-6 py-8 space-y-2">
+              {navLinks.map((link, index) => (
+                <NavLink
+                  key={link.name}
+                  to={link.path}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `block px-5 py-4 rounded-2xl font-semibold tracking-tight transition-all duration-300 ${
+                      isActive
+                        ? "shadow-lg scale-[1.02]"
+                        : "hover:shadow-md hover:scale-[1.01]"
+                    }`
+                  }
+                  style={({ isActive }) => ({
+                    color: isActive ? "white" : `var(--color-deep-purple)`,
+                    background: isActive
+                      ? `linear-gradient(135deg, var(--color-primary), var(--color-accent))`
+                      : `rgba(139, 92, 246, 0.05)`,
+                    animationDelay: `${index * 50}ms`,
+                  })}
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </div>
+          </nav>
+        </>
       )}
     </header>
   );

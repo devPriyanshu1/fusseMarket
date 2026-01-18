@@ -47,11 +47,13 @@ const Testimonials = () => {
 
               return (
                 <motion.div
-                  key={item.id}
+                  key={`testimonial-${item.id}-${pos}`}
                   className={`relative rounded-3xl overflow-hidden shadow-xl
-                    ${isCenter
-                      ? "w-[440px] h-[440px]"
-                      : "w-[340px] h-[360px] opacity-60"}`}
+                    ${
+                      isCenter
+                        ? "w-[440px] h-[440px]"
+                        : "w-[340px] h-[360px] opacity-60"
+                    }`}
                   animate={{
                     scale: isCenter ? 1 : 0.92,
                     y: isCenter ? 0 : 20,
@@ -60,11 +62,15 @@ const Testimonials = () => {
                 >
                   {/* IMAGE (NO BLUR) */}
                   <motion.img
+                    key={`image-${item.id}`}
                     src={item.logo}
                     alt={item.name}
                     className="absolute inset-0 w-full h-full object-cover"
-                    whileHover={{ scale: 1.06 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.06 }}
                   />
 
                   {/* DARK GRADIENT OVERLAY */}
@@ -83,9 +89,7 @@ const Testimonials = () => {
                       {item.category}
                     </span>
 
-                    <h3 className="text-2xl font-bold mb-2">
-                      {item.name}
-                    </h3>
+                    <h3 className="text-2xl font-bold mb-2">{item.name}</h3>
 
                     <p className="text-sm text-slate-200 mb-4 line-clamp-3">
                       {item.feedback}

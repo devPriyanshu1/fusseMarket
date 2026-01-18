@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { ArrowRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 const projects = [
   {
@@ -79,78 +79,229 @@ const projects = [
 const Projects = () => {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  const handlePrev = () => {
+    setActiveIndex((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNext = () => {
+    setActiveIndex((prev) => Math.min(projects.length - 1, prev + 1));
+  };
+
+  // Auto-reset if activeIndex exceeds projects length
+  useEffect(() => {
+    if (activeIndex >= projects.length) {
+      setActiveIndex(0);
+    }
+  }, [activeIndex]);
+
   return (
-    <section className="py-24 bg-slate-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+      {/* Background decoration */}
+      <div
+        className="absolute top-0 left-1/4 w-64 h-64 md:w-96 md:h-96 rounded-full opacity-10 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, #8B5CF6, transparent)" }}
+      ></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         {/* HEADER */}
-        <div className="text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900 relative inline-block">
+        <div className="text-center mb-12 md:mb-16">
+          <div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4 md:mb-6"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1))",
+              border: "1px solid rgba(139, 92, 246, 0.2)",
+            }}
+          >
+            <span
+              className="text-sm font-semibold"
+              style={{ color: "#8B5CF6" }}
+            >
+              Portfolio
+            </span>
+          </div>
+          <h2
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-3 md:mb-4 px-4"
+            style={{
+              background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
             Our Projects
-            <span className="block h-1 w-16 bg-primary mx-auto mt-3 rounded-full" />
           </h2>
-          <p className="mt-4 text-slate-600">
+          <p className="text-base md:text-lg lg:text-xl text-slate-600 max-w-2xl mx-auto px-4">
             Discover our innovative projects showcased in a dynamic gallery.
           </p>
         </div>
 
         {/* CAROUSEL */}
-        <div className="relative overflow-hidden">
-          <div
-            className="flex gap-8 transition-transform duration-500"
-            style={{
-              transform: `translateX(-${activeIndex * 360}px)`,
-            }}
-          >
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="group relative min-w-[340px] h-[420px] rounded-2xl overflow-hidden shadow-lg bg-black"
-              >
-                {/* IMAGE */}
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+        <div className="relative max-w-6xl mx-auto">
+         
 
-                {/* OVERLAY */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition duration-300" />
+         
+          {/* Carousel Container - Mobile shows 1 centered, Desktop shows 3 */}
+          <div className="md:overflow-hidden">
+            {/* Mobile: Single centered image */}
+            <div className="md:hidden flex justify-center mb-6 sm:mb-8">
+              <div className="w-full max-w-md">
+                <div
+                  className="group relative rounded-2xl overflow-hidden bg-black h-[350px] sm:h-[400px]"
+                  style={{
+                    boxShadow:
+                      "0 20px 60px rgba(216, 77, 121, 0.3), 0 10px 30px rgba(180, 167, 214, 0.2)",
+                  }}
+                >
+                  {/* IMAGE */}
+                  <img
+                    src={projects[activeIndex].image}
+                    alt={projects[activeIndex].title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
 
-                {/* CONTENT */}
-                <div className="absolute bottom-0 p-6 text-white opacity-0 group-hover:opacity-100 transition duration-300">
-                  <span className="inline-block mb-2 text-xs font-semibold bg-primary/90 px-3 py-1 rounded-full">
-                    {project.category}
-                  </span>
-                  <h3 className="text-xl font-semibold mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-sm text-slate-200 mb-4">
-                    {project.description}
-                  </p>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-semibold text-white hover:text-primary transition"
-                  >
-                    Visit Website <ArrowRight size={16} />
-                  </a>
+                  {/* GRADIENT OVERLAY */}
+                  <div
+                    className="absolute inset-0 transition-opacity duration-300"
+                    style={{
+                      background:
+                        "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, transparent 100%)",
+                      opacity: 0.85,
+                    }}
+                  />
+
+                  {/* CONTENT */}
+                  <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end text-white">
+                    <span
+                      className="inline-block mb-3 text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full w-fit"
+                      style={{
+                        background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
+                      }}
+                    >
+                      {projects[activeIndex].category}
+                    </span>
+                    <h3 className="text-2xl sm:text-3xl font-bold mb-2 sm:mb-3">
+                      {projects[activeIndex].title}
+                    </h3>
+                    <p className="text-sm sm:text-base text-slate-200 mb-4 sm:mb-6 max-w-xl">
+                      {projects[activeIndex].description}
+                    </p>
+                    <a
+                      href={projects[activeIndex].link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-white hover:gap-3 transition-all duration-300 w-fit"
+                      style={{
+                        textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                      }}
+                    >
+                      Visit Website <ArrowRight size={18} />
+                    </a>
+                  </div>
+
+                  {/* Shine effect on hover */}
+                  <div
+                    className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)",
+                      transform: "translateX(-100%)",
+                    }}
+                  ></div>
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Desktop: Carousel with 3 images */}
+            <div
+              className="hidden md:flex transition-transform duration-500 ease-out"
+              style={{
+                transform: `translateX(-${activeIndex * 100}%)`,
+              }}
+            >
+              {projects.map((project, index) => (
+                <div key={index} className="w-full flex-shrink-0 px-2 md:px-4">
+                  <div className="group relative rounded-2xl overflow-hidden shadow-xl bg-black h-[450px] sm:h-[500px] md:h-[550px]">
+                    {/* IMAGE */}
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+
+                    {/* GRADIENT OVERLAY - Always visible */}
+                    <div
+                      className="absolute inset-0 transition-opacity duration-300"
+                      style={{
+                        background:
+                          "linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, transparent 100%)",
+                        opacity: 0.85,
+                      }}
+                    />
+
+                    {/* CONTENT - Always visible */}
+                    <div className="absolute inset-0 p-6 sm:p-8 flex flex-col justify-end text-white">
+                      <span
+                        className="inline-block mb-3 text-xs sm:text-sm font-semibold px-3 py-1.5 rounded-full w-fit"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, #8B5CF6, #EC4899)",
+                        }}
+                      >
+                        {project.category}
+                      </span>
+                      <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-2 sm:mb-3">
+                        {project.title}
+                      </h3>
+                      <p className="text-sm sm:text-base md:text-lg text-slate-200 mb-4 sm:mb-6 max-w-xl">
+                        {project.description}
+                      </p>
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm sm:text-base font-semibold text-white hover:gap-3 transition-all duration-300 w-fit"
+                        style={{
+                          textShadow: "0 2px 4px rgba(0,0,0,0.3)",
+                        }}
+                      >
+                        Visit Website <ArrowRight size={18} />
+                      </a>
+                    </div>
+
+                    {/* Shine effect on hover */}
+                    <div
+                      className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500 pointer-events-none"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, transparent, rgba(255,255,255,0.6), transparent)",
+                        transform: "translateX(-100%)",
+                      }}
+                    ></div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* CONTROLS */}
-          <div className="flex justify-center gap-3 mt-10">
+          
+
+          {/* DOT INDICATORS */}
+          <div className="flex justify-center gap-2 mt-6 sm:mt-8">
             {projects.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveIndex(i)}
-                className={`h-2.5 w-2.5 rounded-full transition ${
-                  activeIndex === i
-                    ? "bg-primary scale-125"
-                    : "bg-slate-300"
-                }`}
+                className="transition-all duration-300 rounded-full"
+                style={{
+                  width: activeIndex === i ? "32px" : "8px",
+                  height: "8px",
+                  background:
+                    activeIndex === i
+                      ? "linear-gradient(135deg, #8B5CF6, #EC4899)"
+                      : "#cbd5e1",
+                }}
+                aria-label={`Go to slide ${i + 1}`}
               />
             ))}
           </div>

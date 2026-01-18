@@ -1,70 +1,63 @@
 import { TrendingUp, ShieldCheck, Users, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import Button from "../common/Button";
-import "./Hero.css";
 
 const Hero = () => {
   const [textIndex, setTextIndex] = useState(0);
-
-  const paragraphs = [
-    "Innovative market solutions designed for technology, healthcare, finance, and enterprise leaders who demand excellence.",
-    "Transform your business with cutting-edge strategies tailored to your industry's unique challenges and opportunities.",
-    "Empower your organization with data-driven insights and proven methodologies that drive measurable results.",
-  ];
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTextIndex((prev) => (prev + 1) % paragraphs.length);
-    }, 5000); // Change text every 5 seconds
-    return () => clearInterval(interval);
-  }, []);
   return (
-    <section className="relative w-full min-h-screen flex items-center justify-center text-white overflow-hidden hero-section">
+    <section className="relative w-full min-h-[91vh] flex items-center justify-center text-white overflow-hidden [clip-path:polygon(0_0,100%_0,100%_95%,0_100%)] md:[clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]">
       {/* Background overlay image - fixed */}
       <div className="hero-background">
         <img
-          src="/BackgroundOverlay.webp"
+          src="/BackgroundOverlay.png"
           alt="Background overlay"
           className="hero-background-image"
         />
-        {/* Blue blend overlay */}
+        {/* Gradient overlay with theme colors */}
         <div className="hero-overlay"></div>
       </div>
 
-      <div className="relative z-10 max-w-4xl text-center px-4">
-        <div className="animate-fade-in">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent animate-slide-up tracking-tight">
-            <span className="cursive-text">Accelerate</span> Your
+      <div className="relative z-10 max-w-5xl text-center px-4 sm:px-6 lg:px-8">
+        <div className="animate-fade-in space-y-6 md:space-y-8">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight text-white animate-slide-up tracking-tight">
+            Build Your
             <br />
-            Business <span className="cursive-text">Growth</span>
+            <span
+              className="cursive-text"
+              style={{ color: "var(--color-primary)" }}
+            >
+              Future
+            </span>{" "}
+            Today
           </h1>
 
-          <p
-            key={textIndex}
-            className="text-lg md:text-xl text-white/80 mb-10 max-w-2xl mx-auto leading-relaxed font-light tracking-wide animate-fade-text"
-          >
-            {paragraphs[textIndex]}
-          </p>
-
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center pt-4 md:pt-6">
+            <button
               href="/services"
               size="lg"
-              className="  font-semibold rounded hover:bg-white/90 hover:shadow-xl transition-all duration-300 hover:scale-105 hover:text-black"
+              className="inline-flex items-center justify-center px-6 py-3 bg-white accent/90 text-black font-semibold rounded-full hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              
             >
-              Explore Our Services
+              Discover Services
               <span className="ml-2">→</span>
-            </Button>
+            </button>
 
-            <Button
+            <button
               href="/contact"
-              variant="outline"
               size="lg"
-              className="border-2 border-white text-white font-semibold rounded hover:bg-white/10 transition-all duration-300 hover:scale-105 hover:shadow-lg backdrop-blur-sm"
+              className="inline-flex items-center justify-center px-6 py-3 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
+              style={{
+                backgroundColor: "var(--color-primary)",
+              }}
             >
-              Contact Us
-            </Button>
+              Start a Conversation
+            </button>
           </div>
+
+          <div
+            className="flex items-center justify-center gap-6 md:gap-8 pt-8 md:pt-12 text-xs sm:text-sm"
+            style={{ color: "var(--color-muted)" }}
+          ></div>
         </div>
       </div>
     </section>
