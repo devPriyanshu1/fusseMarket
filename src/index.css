@@ -4,16 +4,26 @@
    DESIGN TOKENS (TAILWIND v4)
 ================================ */
 
-/* Fuse Market Brand System */
+/* Fuse Market Brand System - Premium Luxe Palette */
 @theme {
   /* Primary Brand Color */
-  --color-primary: #FF2C55;   /* Fuse Market Pink-Red */
+  --color-primary: #d84d79; /* Thulian Pink - Premium Primary */
+
+  /* Secondary Brand Color */
+  --color-secondary: #b4a7d6; /* Lavender - Elegant Secondary */
+
+  /* Accent Color */
+  --color-accent: #a81c3c; /* Rouge - Rich Accent */
+
+  /* Complementary Colors for Premium Feel */
+  --color-gold: #d4af37; /* Gold - Luxury accent */
+  --color-cream: #fff8f0; /* Cream - Warm neutral background */
+  --color-deep-purple: #6b4c82; /* Deep Purple - Rich text & depth */
 
   /* Supporting Colors */
-  --color-secondary: #1e293b; /* Slate blue (text, headings) */
-  --color-muted: #64748b;     /* Muted text */
-  --color-light: #f8fafc;     /* Section background */
-  --color-dark: #020617;      /* Footer / dark areas */
+  --color-muted: #9b8ba8; /* Soft Purple-Gray - Muted text */
+  --color-light: #fbf7f4; /* Warm Cream - Section background */
+  --color-dark: #2d1e2e; /* Deep Purple-Black - Footer / dark areas */
 }
 
 /* ================================
@@ -32,7 +42,10 @@
     @apply w-full;
   }
 
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply text-slate-900;
   }
 }
@@ -41,7 +54,6 @@
    COMPONENT STYLES
 ================================ */
 @layer components {
-
   /* Section spacing */
   .section {
     @apply py-24;
@@ -102,21 +114,21 @@
     }
   }
 
-@keyframes pulseSoft {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 44, 85, 0.35);
+  @keyframes pulseSoft {
+    0% {
+      box-shadow: 0 0 0 0 rgba(255, 44, 85, 0.35);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(255, 44, 85, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 44, 85, 0);
+    }
   }
-  70% {
-    box-shadow: 0 0 0 10px rgba(255, 44, 85, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(255, 44, 85, 0);
-  }
-}
 
-.hover\:animate-pulse-soft:hover {
-  animation: pulseSoft 1.2s ease-out;
-}
+  .hover\:animate-pulse-soft:hover {
+    animation: pulseSoft 1.2s ease-out;
+  }
 }
 
 @layer components {
@@ -148,10 +160,10 @@
   }
 }
 
-
 /* Slow floating glow */
 @keyframes floatSlow {
-  0%, 100% {
+  0%,
+  100% {
     transform: translate(-50%, 0);
   }
   50% {
@@ -160,7 +172,8 @@
 }
 
 @keyframes floatReverse {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -178,7 +191,9 @@
 
 /* CTA button pulse every 6s */
 @keyframes ctaPulse {
-  0%, 92%, 100% {
+  0%,
+  92%,
+  100% {
     transform: scale(1);
     box-shadow: none;
   }
