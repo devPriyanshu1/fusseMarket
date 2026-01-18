@@ -128,7 +128,7 @@ const Navbar = () => {
             >
               Schedule Demo
             </Link>
-          </nav>
+          </div>
         </div>
       )}
     </header>

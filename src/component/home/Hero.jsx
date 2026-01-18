@@ -1,7 +1,6 @@
 import { TrendingUp, ShieldCheck, Users, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import Button from "../common/Button";
-import React, { useState, useEffect } from "react";
 import "./Hero.css";
 
 const Hero = () => {

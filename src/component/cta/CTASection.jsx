@@ -47,7 +47,7 @@ const CTASection = () => {
         ></div>
       </div>
 
-      <Container className="relative z-10">
+      <Container className="relative z-10"/>
         <div className="max-w-5xl mx-auto text-center">
           {/* Main heading */}
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
@@ -119,7 +119,6 @@ const CTASection = () => {
             })}
           </div>
         </div>
-      </div>
     </section>
   );
 };
