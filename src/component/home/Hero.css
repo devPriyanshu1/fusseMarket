@@ -1,5 +1,4 @@
 /* Hero Component Styles */
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;500;600;700&display=swap");
 
 /* Hero Section Container */
 .hero-section {
@@ -30,12 +29,12 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    to bottom right,
-    rgba(59, 130, 246, 0.8),
-    rgba(59, 130, 246, 0.75),
-    rgba(30, 58, 138, 0.75)
+    135deg,
+    rgba(216, 77, 121, 0.75),
+    rgba(168, 28, 60, 0.8),
+    rgba(107, 76, 130, 0.75)
   );
-  mix-blend-mode: multiply;
+  mix-blend-mode: overlay;
 }
 
 @keyframes fade-in {

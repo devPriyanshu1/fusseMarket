@@ -1,144 +1,126 @@
-import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { testimonialsData } from "../../data/testimonialsData";
 import Container from "../common/Container";
 import SectionHeader from "../common/SectionHeader";
-import { testimonialsData } from "../../data/testimonialsData";
+import { motion } from "framer-motion";
 
-const AUTO_SLIDE_INTERVAL = 3000;
+const SLIDE_DELAY = 3000;
 
 const Testimonials = () => {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const intervalRef = useRef(null);
+  const total = testimonialsData.length;
 
-  // 🔮 Parallax
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  const smoothX = useSpring(mouseX, { stiffness: 60, damping: 20 });
-  const smoothY = useSpring(mouseY, { stiffness: 60, damping: 20 });
-
-  const onMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    mouseX.set(e.clientX - rect.left - rect.width / 2);
-    mouseY.set(e.clientY - rect.top - rect.height / 2);
-  };
-
-  const onMouseLeave = () => {
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
-  // 🔁 Auto slide
+  /* AUTO SLIDE */
   useEffect(() => {
     if (paused) return;
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % testimonialsData.length);
-    }, AUTO_SLIDE_INTERVAL);
-    return () => clearInterval(timer);
-  }, [paused]);
 
-  const getItem = (offset) => {
-    const i =
-      (index + offset + testimonialsData.length) %
-      testimonialsData.length;
-    return testimonialsData[i];
-  };
+    intervalRef.current = setInterval(() => {
+      setIndex((prev) => (prev + 1) % total);
+    }, SLIDE_DELAY);
 
-  const cards = [getItem(-1), getItem(0), getItem(1)];
+    return () => clearInterval(intervalRef.current);
+  }, [paused, total]);
+
+  const getItem = (offset) =>
+    testimonialsData[(index + offset + total) % total];
 
   return (
-    <section className="section bg-slate-50 overflow-hidden">
+    <section className="py-28 bg-slate-50 overflow-hidden">
       <Container>
         <SectionHeader
           title="What Our Clients Say"
           subtitle="Trusted by growing brands across industries"
-          centered
+          center
         />
 
         <div
-          className="relative mt-20 flex items-center justify-center gap-10"
-          onMouseMove={onMouseMove}
+          className="relative mt-20"
           onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => {
-            setPaused(false);
-            onMouseLeave();
-          }}
+          onMouseLeave={() => setPaused(false)}
         >
-          {cards.map((item, i) => {
-            const isCenter = i === 1;
+          <div className="flex justify-center gap-10">
+            {[-1, 0, 1].map((pos) => {
+              const item = getItem(pos);
+              const isCenter = pos === 0;
 
-            return (
-              <motion.div
-                key={item.name}
-                className={`relative rounded-3xl overflow-hidden transition-all duration-500 ${
-                  isCenter
-                    ? "w-[420px] h-[520px] shadow-2xl"
-                    : "w-[300px] h-[420px] opacity-60"
-                }`}
-                animate={{ scale: isCenter ? 1 : 0.95 }}
-              >
-                {/* IMAGE */}
-                <motion.img
-                  src={item.image}
-                  alt={item.name}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  style={{
-                    x: useTransform(
-                      smoothX,
-                      (v) => v * (isCenter ? 0.04 : 0.02)
-                    ),
-                    y: useTransform(
-                      smoothY,
-                      (v) => v * (isCenter ? 0.04 : 0.02)
-                    ),
+              return (
+                <motion.div
+                  key={`testimonial-${item.id}-${pos}`}
+                  className={`relative rounded-3xl overflow-hidden shadow-xl
+                    ${
+                      isCenter
+                        ? "w-[440px] h-[440px]"
+                        : "w-[340px] h-[360px] opacity-60"
+                    }`}
+                  animate={{
+                    scale: isCenter ? 1 : 0.92,
+                    y: isCenter ? 0 : 20,
                   }}
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6 }}
-                />
+                  transition={{ duration: 0.5 }}
+                >
+                  {/* IMAGE (NO BLUR) */}
+                  <motion.img
+                    key={`image-${item.id}`}
+                    src={item.logo}
+                    alt={item.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.6 }}
+                    whileHover={{ scale: 1.06 }}
+                  />
 
-                {/* DARK OVERLAY */}
-                <div className="absolute inset-0 bg-black/40" />
+                  {/* DARK GRADIENT OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-                {/* CATEGORY BADGE */}
-                <div className="absolute top-5 left-5 z-10">
-                  <span className="px-3 py-1 text-xs rounded-full bg-white/20 backdrop-blur text-white">
-                    {item.category}
-                  </span>
-                </div>
+                  {/* BADGE */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="px-3 py-1 text-xs font-semibold rounded-full bg-white/90 text-slate-900 shadow">
+                      Client Project
+                    </span>
+                  </div>
 
-                {/* CONTENT */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 text-white z-10">
-                  <h3 className="text-xl font-semibold mb-2">
-                    {item.name}
-                  </h3>
-                  <p className="text-sm text-white/80 mb-4 line-clamp-3">
-                    {item.feedback}
-                  </p>
+                  {/* CONTENT */}
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6 text-white">
+                    <span className="mb-2 text-xs uppercase tracking-wide text-white/80">
+                      {item.category}
+                    </span>
 
-                  {/* VISIT LINK */}
-                  <a
-                    href={item.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-medium hover:gap-3 transition-all"
-                  >
-                    Visit Website →
-                  </a>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                    <h3 className="text-2xl font-bold mb-2">{item.name}</h3>
 
-        {/* PROGRESS BAR */}
-        <div className="mt-10 flex justify-center">
-          <div className="h-[3px] w-48 bg-slate-200 rounded-full overflow-hidden">
-            <motion.div
-              className="h-full bg-primary"
-              animate={{
-                width: `${((index + 1) / testimonialsData.length) * 100}%`,
-              }}
-              transition={{ ease: "easeInOut", duration: 0.4 }}
-            />
+                    <p className="text-sm text-slate-200 mb-4 line-clamp-3">
+                      {item.feedback}
+                    </p>
+
+                    <motion.a
+                      href={item.website}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 font-semibold"
+                      whileHover={{ x: 6 }}
+                    >
+                      Visit Website <span>→</span>
+                    </motion.a>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* PROGRESS BAR */}
+          <div className="mt-10 flex justify-center">
+            <div className="w-64 h-1 bg-slate-200 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-primary"
+                key={index}
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: SLIDE_DELAY / 1000, ease: "linear" }}
+              />
+            </div>
           </div>
         </div>
       </Container>
