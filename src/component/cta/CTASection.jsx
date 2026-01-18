@@ -1,59 +1,68 @@
-import { ArrowRight } from "lucide-react";
+import { useRef } from "react";
+import Button from "../common/Button";
 
 const CTASection = () => {
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    card.style.transform = `
+      rotateX(${(-y / 40).toFixed(2)}deg)
+      rotateY(${(x / 40).toFixed(2)}deg)
+      translateZ(10px)
+    `;
+  };
+
+  const resetTransform = () => {
+    cardRef.current.style.transform =
+      "rotateX(0deg) rotateY(0deg) translateZ(0)";
+  };
+
   return (
-    <section className="bg-slate-900 py-24">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="relative py-28 bg-[#0B1220] overflow-hidden">
+      {/* Glow */}
+      <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary/20 blur-[140px] animate-float-slow" />
 
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 to-slate-800 px-8 py-20 text-center">
+      <div className="relative max-w-6xl mx-auto px-6">
+        <div
+          ref={cardRef}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={resetTransform}
+          className="rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 p-16 text-center transition-transform duration-300 will-change-transform"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Ready to Grow Your Business?
+          </h2>
 
-          {/* Subtle background accent */}
-          <div className="absolute -top-20 -right-20 h-72 w-72 rounded-full bg-primary/20 blur-3xl"></div>
-          <div className="absolute -bottom-20 -left-20 h-72 w-72 rounded-full bg-primary/10 blur-3xl"></div>
+          <p className="text-slate-300 max-w-2xl mx-auto mb-10 text-lg">
+            Let’s discuss how Fuse Market can help you scale with clarity,
+            strategy, and measurable results.
+          </p>
 
-          {/* Content */}
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white">
-              Ready to Grow Your Business?
-            </h2>
+          <div className="flex flex-wrap justify-center gap-6">
+            <Button size="lg" className="animate-cta-pulse">
+              Get Free Consultation →
+            </Button>
 
-            <p className="mt-4 text-slate-300 text-lg">
-              Let’s discuss how Fuse Market can help you scale with clarity,
-              strategy, and results.
-            </p>
-
-            {/* CTA Buttons */}
-            <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
-
-              {/* Primary CTA */}
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2
-                rounded-full bg-primary px-8 py-3 text-white font-semibold
-                hover:brightness-95 transition shadow-lg"
-              >
-                Get Free Consultation
-                <ArrowRight size={18} />
-              </a>
-
-              {/* Secondary CTA */}
-              <a
-                href="/services"
-                className="inline-flex items-center justify-center
-                rounded-full border border-white/30 px-8 py-3
-                text-white font-medium hover:bg-white/10 transition"
-              >
-                View Services
-              </a>
-            </div>
-
-            {/* Trust Line */}
-            <p className="mt-8 text-sm text-slate-400">
-              Trusted by 500+ businesses across India
-            </p>
+            {/* ✅ NOW WORKS */}
+            <Button
+              size="lg"
+              variant="outline"
+              to="/services"
+            >
+              View Services
+            </Button>
           </div>
-        </div>
 
+          <p className="mt-10 text-sm text-slate-400">
+            Trusted by 500+ businesses across India
+          </p>
+        </div>
       </div>
     </section>
   );

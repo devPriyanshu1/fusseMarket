@@ -2,46 +2,49 @@ import { Link } from "react-router-dom";
 
 const Button = ({
   children,
-  href,
-  onClick,
-  variant = "primary",
   size = "md",
+  variant = "primary",
   className = "",
-  type = "button",
+  to,
+  href,
+  ...props
 }) => {
-  const baseStyles =
-    "inline-flex items-center justify-center font-semibold rounded-full transition-all duration-300 focus:outline-none";
-
-  const variants = {
-    primary:
-      "bg-primary text-white hover:opacity-95 hover:animate-pulse-soft",
-    outline:
-      "border-2 border-primary text-primary hover:bg-primary hover:text-white",
-  };
+  const base =
+    "inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 active:scale-95";
 
   const sizes = {
     sm: "px-4 py-2 text-sm",
-    md: "px-6 py-2.5 text-sm",
-    lg: "px-8 py-3 text-base",
+    md: "px-6 py-3 text-sm",
+    lg: "px-8 py-4 text-base",
   };
 
-  const classes = `
-    ${baseStyles}
-    ${variants[variant]}
-    ${sizes[size]}
-    ${className}
-  `;
+  const variants = {
+    primary:
+      "bg-primary text-white hover:opacity-90 shadow-[0_10px_40px_rgba(255,44,85,0.35)]",
+    outline:
+      "border border-white/30 text-white hover:bg-white hover:text-slate-900",
+  };
 
-  if (href) {
+  const classes = `${base} ${sizes[size]} ${variants[variant]} ${className}`;
+
+  if (to) {
     return (
-      <Link to={href} className={classes}>
+      <Link to={to} className={classes}>
         {children}
       </Link>
     );
   }
 
+  if (href) {
+    return (
+      <a href={href} className={classes}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button type={type} onClick={onClick} className={classes}>
+    <button className={classes} {...props}>
       {children}
     </button>
   );
