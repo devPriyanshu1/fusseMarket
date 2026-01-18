@@ -1,87 +1,125 @@
-import { Star, Quote } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { testimonialsData } from "../../data/testimonialsData";
+import Container from "../common/Container";
+import SectionHeader from "../common/SectionHeader";
+import { motion } from "framer-motion";
 
-const testimonials = [
-  {
-    name: "Affnet Consultants",
-    role: "Business Consulting Firm",
-    message:
-      "Fuse Market helped us revamp our digital presence and improve lead quality. The results were visible within weeks.",
-  },
-  {
-    name: "RVS Realty",
-    role: "Real Estate Brand",
-    message:
-      "Their team understood our requirements clearly and delivered a modern, conversion-focused website on time.",
-  },
-];
+const SLIDE_DELAY = 3000;
 
 const Testimonials = () => {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const intervalRef = useRef(null);
+  const total = testimonialsData.length;
+
+  /* AUTO SLIDE */
+  useEffect(() => {
+    if (paused) return;
+
+    intervalRef.current = setInterval(() => {
+      setIndex((prev) => (prev + 1) % total);
+    }, SLIDE_DELAY);
+
+    return () => clearInterval(intervalRef.current);
+  }, [paused, total]);
+
+  const getItem = (offset) =>
+    testimonialsData[(index + offset + total) % total];
+
   return (
-    <section className="bg-slate-50 py-24">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-28 bg-slate-50 overflow-hidden">
+      <Container>
+        <SectionHeader
+          title="What Our Clients Say"
+          subtitle="Trusted by growing brands across industries"
+          center
+        />
 
-        {/* SECTION HEADER */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
-            What Our Clients Say
-          </h2>
-          <p className="mt-4 text-slate-600">
-            Trusted by growing businesses across industries.
-          </p>
-        </div>
+        <div
+          className="relative mt-20"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div className="flex justify-center gap-10">
+            {[-1, 0, 1].map((pos) => {
+              const item = getItem(pos);
+              const isCenter = pos === 0;
 
-        {/* TESTIMONIAL GRID */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-          {testimonials.map((t, index) => (
-            <div
-              key={index}
-              className="relative bg-white border border-slate-200 rounded-2xl p-8
-              shadow-sm hover:shadow-xl transition-all duration-300"
-            >
-              {/* Quote Icon */}
-              <div className="absolute -top-4 -left-4 h-10 w-10 rounded-full
-              bg-primary text-white flex items-center justify-center shadow-md">
-                <Quote size={18} />
-              </div>
-
-              {/* Rating */}
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className="fill-primary text-primary"
+              return (
+                <motion.div
+                  key={item.id}
+                  className={`relative rounded-3xl overflow-hidden shadow-xl
+                    ${isCenter
+                      ? "w-[440px] h-[440px]"
+                      : "w-[340px] h-[360px] opacity-60"}`}
+                  animate={{
+                    scale: isCenter ? 1 : 0.92,
+                    y: isCenter ? 0 : 20,
+                  }}
+                  transition={{ duration: 0.5 }}
+                >
+                  {/* IMAGE (NO BLUR) */}
+                  <motion.img
+                    src={item.logo}
+                    alt={item.name}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    whileHover={{ scale: 1.06 }}
+                    transition={{ duration: 0.6 }}
                   />
-                ))}
-              </div>
 
-              {/* Message */}
-              <p className="text-slate-700 leading-relaxed mb-6">
-                “{t.message}”
-              </p>
+                  {/* DARK GRADIENT OVERLAY */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
-              {/* Client Info */}
-              <div className="border-t pt-4">
-                <p className="font-semibold text-slate-900">{t.name}</p>
-                <p className="text-sm text-slate-500">{t.role}</p>
-              </div>
+                  {/* BADGE */}
+                  <div className="absolute top-4 left-4 z-10">
+                    <span className="px-3 py-1 text-xs font-semibold rounded-full bg-white/90 text-slate-900 shadow">
+                      Client Project
+                    </span>
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="relative z-10 h-full flex flex-col justify-end p-6 text-white">
+                    <span className="mb-2 text-xs uppercase tracking-wide text-white/80">
+                      {item.category}
+                    </span>
+
+                    <h3 className="text-2xl font-bold mb-2">
+                      {item.name}
+                    </h3>
+
+                    <p className="text-sm text-slate-200 mb-4 line-clamp-3">
+                      {item.feedback}
+                    </p>
+
+                    <motion.a
+                      href={item.website}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 font-semibold"
+                      whileHover={{ x: 6 }}
+                    >
+                      Visit Website <span>→</span>
+                    </motion.a>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* PROGRESS BAR */}
+          <div className="mt-10 flex justify-center">
+            <div className="w-64 h-1 bg-slate-200 rounded-full overflow-hidden">
+              <motion.div
+                className="h-full bg-primary"
+                key={index}
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: SLIDE_DELAY / 1000, ease: "linear" }}
+              />
             </div>
-          ))}
+          </div>
         </div>
-
-        {/* TRUST FOOTER */}
-        <div className="mt-14 text-center">
-          <p className="text-slate-600 mb-4">
-            Join 500+ businesses that trust Fuse Market.
-          </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center text-primary font-medium hover:underline"
-          >
-            Start your project with us →
-          </a>
-        </div>
-      </div>
+      </Container>
     </section>
   );
 };
