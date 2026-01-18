@@ -2,43 +2,49 @@ import { Link } from "react-router-dom";
 
 const Button = ({
   children,
-  variant = "primary",
   size = "md",
-  href,
-  onClick,
+  variant = "primary",
   className = "",
+  to,
+  href,
   ...props
 }) => {
-  const baseClasses = "inline-flex items-center justify-center font-semibold rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2";
-
-  const variants = {
-    primary: "bg-primary text-white hover:bg-primary/90 hover:shadow-xl shadow-lg hover:scale-105 focus:ring-primary",
-    secondary: "bg-secondary text-white hover:bg-secondary/90 hover:shadow-xl shadow-lg hover:scale-105 focus:ring-secondary",
-    accent: "bg-accent text-white hover:bg-accent/90 hover:shadow-xl shadow-lg hover:scale-105 focus:ring-accent",
-    outline: "border-2 border-primary text-primary hover:bg-primary hover:text-white hover:scale-105 focus:ring-primary",
-    ghost: "text-primary hover:bg-primary/10 hover:scale-105 focus:ring-primary",
-    success: "bg-success text-white hover:bg-success/90 hover:shadow-xl shadow-lg hover:scale-105 focus:ring-success",
-  };
+  const base =
+    "inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 active:scale-95";
 
   const sizes = {
     sm: "px-4 py-2 text-sm",
-    md: "px-6 py-3 text-base",
-    lg: "px-8 py-4 text-lg",
-    xl: "px-10 py-5 text-lg font-bold",
+    md: "px-6 py-3 text-sm",
+    lg: "px-8 py-4 text-base",
   };
 
-  const classes = `${baseClasses} ${variants[variant]} ${sizes[size]} ${className}`;
+  const variants = {
+    primary:
+      "bg-primary text-white hover:opacity-90 shadow-[0_10px_40px_rgba(255,44,85,0.35)]",
+    outline:
+      "border border-white/30 text-white hover:bg-white hover:text-slate-900",
+  };
 
-  if (href) {
+  const classes = `${base} ${sizes[size]} ${variants[variant]} ${className}`;
+
+  if (to) {
     return (
-      <Link to={href} className={classes} {...props}>
+      <Link to={to} className={classes}>
         {children}
       </Link>
     );
   }
 
+  if (href) {
+    return (
+      <a href={href} className={classes}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <button onClick={onClick} className={classes} {...props}>
+    <button className={classes} {...props}>
       {children}
     </button>
   );

@@ -101,6 +101,22 @@
   animation: pulse-subtle 3s ease-in-out infinite;
 }
 
+.hero-trust {
+  margin-top: 3rem;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
 .delay-1000 {
   animation-delay: 1s;
 }

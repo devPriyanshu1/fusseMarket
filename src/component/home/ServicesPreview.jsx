@@ -232,7 +232,7 @@ const ServicesPreview = () => {
             </span>
           </Link>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };

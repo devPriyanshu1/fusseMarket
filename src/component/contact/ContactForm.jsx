@@ -1,71 +1,23 @@
 import { useState } from "react";
+import Input from "../common/Input";
+import Textarea from "../common/Textarea";
+import Button from "../common/Button";
 
 const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(formData); // later connect API / EmailJS
-  };
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="bg-white shadow-lg rounded-xl p-8 space-y-6"
-    >
-      <div>
-        <label className="block text-sm font-medium mb-1">Name</label>
-        <input
-          type="text"
-          name="name"
-          required
-          value={formData.name}
-          onChange={handleChange}
-          className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-      </div>
+    <form className="bg-white p-8 rounded-2xl shadow-lg space-y-4">
+      <Input label="Name" name="name" value={form.name} onChange={handleChange} />
+      <Input label="Email" name="email" value={form.email} onChange={handleChange} />
+      <Textarea label="Message" name="message" value={form.message} onChange={handleChange} />
 
-      <div>
-        <label className="block text-sm font-medium mb-1">Email</label>
-        <input
-          type="email"
-          name="email"
-          required
-          value={formData.email}
-          onChange={handleChange}
-          className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-1">Message</label>
-        <textarea
-          name="message"
-          rows="4"
-          required
-          value={formData.message}
-          onChange={handleChange}
-          className="w-full border rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-primary"
-        ></textarea>
-      </div>
-
-      <button
-        type="submit"
-        className="w-full bg-primary text-white py-3 rounded-lg font-semibold hover:opacity-90 transition"
-      >
-        Send Message
-      </button>
+      <Button className="w-full" size="lg">
+        Send Message →
+      </Button>
     </form>
   );
 };

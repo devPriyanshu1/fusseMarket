@@ -1,8 +1,30 @@
+import { useRef } from "react";
 import Button from "../common/Button";
 import Container from "../common/Container";
 import { CheckCircle2 } from "lucide-react";
 
 const CTASection = () => {
+  const cardRef = useRef(null);
+
+  const handleMouseMove = (e) => {
+    const card = cardRef.current;
+    const rect = card.getBoundingClientRect();
+
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+
+    card.style.transform = `
+      rotateX(${(-y / 40).toFixed(2)}deg)
+      rotateY(${(x / 40).toFixed(2)}deg)
+      translateZ(10px)
+    `;
+  };
+
+  const resetTransform = () => {
+    cardRef.current.style.transform =
+      "rotateX(0deg) rotateY(0deg) translateZ(0)";
+  };
+
   return (
     <section className="relative bg-gradient-to-br from-indigo-950 via-indigo-900 to-purple-950 text-white py-32 overflow-hidden">
       {/* Animated background elements */}
@@ -97,7 +119,7 @@ const CTASection = () => {
             })}
           </div>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };

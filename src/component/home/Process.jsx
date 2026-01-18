@@ -40,7 +40,7 @@ const Process = () => {
       <Container>
         <SectionHeader
           title="How We Work"
-          subtitle="Our proven 4-step process ensures your success from strategy to execution."
+          subtitle="A proven 4-step process that delivers results."
         />
 
         <div className="process-container">

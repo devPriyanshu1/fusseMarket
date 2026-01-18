@@ -1,24 +1,28 @@
-const SectionHeader = ({
-  title,
-  subtitle,
-  align = "center",
-  className = "",
-  titleClass = "",
-  subtitleClass = "",
-}) => {
-  const alignClasses = {
-    left: "text-left",
-    center: "text-center",
-    right: "text-right",
-  };
-
+const SectionHeader = ({ title, subtitle, center = true }) => {
   return (
-    <div className={`${alignClasses[align]} mb-12 ${className}`}>
-      <h2 className={`text-3xl md:text-4xl font-bold text-slate-800 mb-4 ${titleClass}`}>
-        {title}
-      </h2>
+    <div
+      className={`group mb-12 ${
+        center ? "text-center" : "text-left"
+      }`}
+    >
+      <div className="relative inline-block">
+        <h2 className="text-3xl font-bold text-slate-900">
+          {title}
+        </h2>
+
+        {/* Animated underline */}
+        <span
+          className="
+            absolute left-1/2 -bottom-2 h-[3px] w-12
+            -translate-x-1/2 rounded-full bg-primary
+            transition-all duration-300 ease-out
+            group-hover:w-20
+          "
+        />
+      </div>
+
       {subtitle && (
-        <p className={`text-lg text-slate-600 max-w-2xl mx-auto ${subtitleClass}`}>
+        <p className="mt-4 text-slate-600 max-w-2xl mx-auto">
           {subtitle}
         </p>
       )}

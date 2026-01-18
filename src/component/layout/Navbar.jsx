@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -49,9 +51,9 @@ const Navbar = () => {
             className="flex items-center gap-2 transition-transform hover:scale-105 duration-300"
           >
             <img
-              src="/images/logos/logo.svg"
+              src={logo}
               alt="Fuse Market Logo"
-              className="h-8 w-8"
+              className="h-9 w-9 object-contain"
             />
             <span className="font-bold text-lg text-slate-900 bg-gradient-to-r from-slate-900 to-primary bg-clip-text text-transparent">
               Fuse Market
@@ -93,32 +95,12 @@ const Navbar = () => {
             className="md:hidden inline-flex items-center justify-center rounded-md p-2 text-slate-700 hover:bg-slate-100 transition-colors duration-300"
             aria-label="Toggle menu"
           >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-            >
-              {isOpen ? (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              )}
-            </svg>
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </div>
 
-      {/* MOBILE MENU */}
+      {/* MOBILE NAV */}
       {isOpen && (
         <div className="md:hidden bg-white border-t border-slate-100 animate-in slide-in-from-top-2 duration-300">
           <div className="px-4 py-4 space-y-2">
@@ -146,7 +128,7 @@ const Navbar = () => {
             >
               Schedule Demo
             </Link>
-          </div>
+          </nav>
         </div>
       )}
     </header>
