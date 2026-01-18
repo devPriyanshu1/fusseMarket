@@ -206,3 +206,18 @@
 .animate-cta-pulse {
   animation: ctaPulse 6s infinite;
 }
+
+/* Custom Animations for About Page */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Apply float animation */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
