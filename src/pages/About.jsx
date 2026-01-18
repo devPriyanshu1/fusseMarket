@@ -13,6 +13,7 @@ const About = () => {
       <PageHero
         title="About Fuse Market"
         subtitle="Transforming Businesses Through Digital Innovation"
+        image="/AboutOverlay.webp"
       />
 
       {/* About Sections */}

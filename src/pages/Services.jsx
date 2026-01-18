@@ -19,7 +19,7 @@ const Services = () => {
       <PageHero
         title="Our Services"
         subtitle="Solutions designed to elevate your digital presence."
-        image="/images/hero/services.jpg"
+        image="/ServicesOverlay.webp"
       />
 
       <section className="max-w-7xl mx-auto px-4 py-20">

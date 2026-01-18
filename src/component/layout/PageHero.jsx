@@ -1,16 +1,21 @@
 import Container from "../common/Container";
 
-const PageHero = ({ title, subtitle }) => {
+const PageHero = ({ title, subtitle, image }) => {
   return (
     <section className="relative overflow-hidden bg-slate-900">
-      {/* Background layers */}
-      <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900" />
+      {/* Background image */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: image ? `url('${image}')` : "none",
+        }}
+      />
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-slate-900/95 via-slate-800/90 to-slate-900/95" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,44,85,0.18),transparent_60%)]" />
 
       <Container className="relative z-10 py-32 text-center">
-        <h1 className="text-4xl md:text-5xl font-bold text-white">
-          {title}
-        </h1>
+        <h1 className="text-4xl md:text-5xl font-bold text-white">{title}</h1>
 
         <p className="mt-5 max-w-2xl mx-auto text-white/80 text-lg">
           {subtitle}
