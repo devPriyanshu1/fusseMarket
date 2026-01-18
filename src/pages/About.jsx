@@ -1,41 +1,81 @@
 import PageHero from "../component/layout/PageHero";
+import Card from "../component/common/Card";
+import SectionHeader from "../component/common/SectionHeader";
+import VisionMission from "../component/about/VisionMission";
+import CoreValues from "../component/about/CoreValues";
+import Expertise from "../component/about/Expertise";
+import Timeline from "../component/about/Timeline";
 
 const About = () => {
   return (
     <>
       <PageHero
         title="About Fuse Market"
-        subtitle="Learn more about our mission and expertise."
+        subtitle="Transforming Businesses Through Digital Innovation"
         image="/images/hero/about.jpg"
       />
 
+      {/* Our Story Section */}
       <section className="max-w-7xl mx-auto px-4 py-20">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-6">Our Story</h2>
-          <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-            Fuse Market is dedicated to helping businesses thrive in the digital world.
-            With years of experience in digital marketing and web development, we provide
-            comprehensive solutions tailored to your unique needs.
-          </p>
-        </div>
-
-        <div className="grid gap-12 md:grid-cols-2">
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">Our Mission</h3>
-            <p className="text-slate-600">
-              To empower businesses with innovative digital solutions that drive growth
-              and success in an ever-evolving marketplace.
+        <SectionHeader
+          title="Our Story"
+          subtitle="Building the future of digital transformation"
+          centered
+        />
+        <div className="max-w-3xl mx-auto">
+          <Card variant="primary" shadow="lg" className="text-center">
+            <p className="text-base leading-relaxed text-gray-700">
+              Fuse Market is dedicated to helping businesses thrive in the digital world.
+              With years of experience in digital marketing and web development, we provide
+              comprehensive solutions tailored to your unique needs. We believe in innovation,
+              excellence, and building lasting partnerships with our clients.
             </p>
-          </div>
-
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">Our Vision</h3>
-            <p className="text-slate-600">
-              To be the leading partner for businesses seeking to harness the power
-              of digital transformation and achieve sustainable growth.
-            </p>
-          </div>
+          </Card>
         </div>
+      </section>
+
+      {/* Vision & Mission Section */}
+      <section className="py-20 bg-gradient-to-b from-primary/5 to-secondary/5">
+        <div className="max-w-7xl mx-auto px-4">
+          <SectionHeader
+            title="Vision & Mission"
+            subtitle="Our commitment to excellence"
+            centered
+          />
+          <VisionMission />
+        </div>
+      </section>
+
+      {/* Core Values Section */}
+      <section className="max-w-7xl mx-auto px-4 py-20">
+        <SectionHeader
+          title="Core Values"
+          subtitle="The principles that guide us"
+          centered
+        />
+        <CoreValues />
+      </section>
+
+      {/* Expertise Section */}
+      <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <SectionHeader
+            title="Our Expertise"
+            subtitle="Specialized knowledge across multiple domains"
+            centered
+          />
+          <Expertise />
+        </div>
+      </section>
+
+      {/* Timeline Section */}
+      <section className="max-w-7xl mx-auto px-4 py-20">
+        <SectionHeader
+          title="Our Journey"
+          subtitle="Key milestones in our growth"
+          centered
+        />
+        <Timeline />
       </section>
     </>
   );

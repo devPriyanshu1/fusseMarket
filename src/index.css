@@ -1,83 +1,104 @@
 @import "tailwindcss";
 
+/* ================================
+   DESIGN TOKENS (TAILWIND v4)
+================================ */
+
+/* Fuse Market Brand System */
 @theme {
-  /* Professional Industry-Based Color Palette */
-  --color-primary: #1e3a8a;           /* Deep Navy Blue */
-  --color-secondary: #0f766e;         /* Professional Teal */
-  --color-accent: #dc2626;            /* Corporate Red */
-  --color-light: #f0f9ff;             /* Light Blue Background */
-  --color-dark: #0f172a;              /* Near Black */
-  --color-success: #059669;           /* Professional Green */
-  --color-warning: #d97706;           /* Professional Orange */
-  --color-gray-50: #f9fafb;
-  --color-gray-100: #f3f4f6;
-  --color-gray-200: #e5e7eb;
-  --color-gray-300: #d1d5db;
-  --color-gray-400: #9ca3af;
-  --color-gray-500: #6b7280;
-  --color-gray-600: #4b5563;
-  --color-gray-700: #374151;
-  --color-gray-800: #1f2937;
-  --color-gray-900: #111827;
+  /* Primary Brand Color */
+  --color-primary: #FF2C55;   /* Fuse Market Pink-Red */
+
+  /* Supporting Colors */
+  --color-secondary: #1e293b; /* Slate blue (text, headings) */
+  --color-muted: #64748b;     /* Muted text */
+  --color-light: #f8fafc;     /* Section background */
+  --color-dark: #020617;      /* Footer / dark areas */
 }
 
-/* Custom animations */
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
+/* ================================
+   BASE STYLES
+================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
 
-@keyframes slide-in-right {
-  from {
-    opacity: 0;
-    transform: translateX(50px);
+  body {
+    @apply bg-white text-slate-800 antialiased;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+
+  section {
+    @apply w-full;
+  }
+
+  h1, h2, h3, h4 {
+    @apply text-slate-900;
   }
 }
 
-@keyframes slide-in-left {
-  from {
-    opacity: 0;
-    transform: translateX(-50px);
+/* ================================
+   COMPONENT STYLES
+================================ */
+@layer components {
+
+  /* Section spacing */
+  .section {
+    @apply py-24;
   }
-  to {
-    opacity: 1;
-    transform: translateX(0);
+
+  /* Card system */
+  .card {
+    @apply bg-white border border-slate-200 rounded-2xl p-6
+           shadow-sm hover:shadow-xl hover:-translate-y-1
+           transition-all duration-300;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply inline-flex items-center justify-center rounded-full
+           font-semibold transition-all active:scale-[0.97];
+  }
+
+  .btn-primary {
+    @apply bg-[--color-primary] text-white
+           hover:brightness-95 shadow-md;
+  }
+
+  .btn-outline {
+    @apply border-2 border-[--color-primary] text-[--color-primary]
+           hover:bg-[--color-primary] hover:text-white;
   }
 }
 
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+/* ================================
+   UTILITIES
+================================ */
+@layer utilities {
+  .text-primary {
+    color: var(--color-primary);
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
+
+  .bg-primary {
+    background-color: var(--color-primary);
   }
-}
 
-.animate-fade-in {
-  animation: fade-in 1s ease-out;
-}
+  .border-primary {
+    border-color: var(--color-primary);
+  }
 
-.animate-slide-in-right {
-  animation: slide-in-right 0.8s ease-out;
-}
+  .animate-fade-in {
+    animation: fadeIn 0.9s ease-out forwards;
+  }
 
-.animate-slide-in-left {
-  animation: slide-in-left 0.8s ease-out;
-}
-
-.animate-scale-in {
-  animation: scale-in 0.6s ease-out;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 }

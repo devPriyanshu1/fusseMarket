@@ -1,66 +1,78 @@
-/* Hero Component Styles - Industry Professional */
+.hero-section {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  /* 🔥 THIS IS THE MAGIC */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* background stays in place */
+
+  overflow: hidden;
 }
 
-@keyframes pulse-subtle {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-@keyframes gradient-shift {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.animate-fade-in {
-  animation: fade-in 1s ease-out;
-}
-
-.animate-pulse-subtle {
-  animation: pulse-subtle 3s ease-in-out infinite;
-}
-
-.delay-1000 {
-  animation-delay: 1s;
-}
-
-.delay-500 {
-  animation-delay: 0.5s;
-}
-
-.hero-gradient-bg {
-  background: linear-gradient(135deg, #1e3a8a 0%, #0f766e 50%, #0f172a 100%);
-  background-size: 200% 200%;
-  animation: gradient-shift 15s ease infinite;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom right,
+    rgba(2, 6, 23, 0.55),
+    rgba(2, 6, 23, 0.65)
+  );
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 10;
+  z-index: 2;
+}
+
+.hero-title {
+  font-size: clamp(2.4rem, 4vw, 3.8rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
 }
 
 .hero-accent {
-  color: #dc2626;
-  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.hero-subtitle {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  color: #e5e7eb;
+}
+
+.hero-actions {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-trust {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+}
+
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* 📱 Mobile fallback (important) */
+@media (max-width: 768px) {
+  .hero-section {
+    background-attachment: scroll; /* fixed is buggy on mobile */
+  }
 }

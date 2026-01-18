@@ -1,96 +1,87 @@
-import Container from "../common/Container";
-import SectionHeader from "../common/SectionHeader";
-import Card from "../common/Card";
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
     name: "Affnet Consultants",
     role: "Business Consulting Firm",
     message:
-      "Fuse Market transformed our online presence with a sleek website and powerful SEO strategy. We saw real growth within weeks.",
-    rating: 5,
-    avatar: "👔",
+      "Fuse Market helped us revamp our digital presence and improve lead quality. The results were visible within weeks.",
   },
   {
     name: "RVS Realty",
     role: "Real Estate Brand",
     message:
-      "Working with Fuse Market was seamless. Their team understood our vision and delivered beyond expectations.",
-    rating: 5,
-    avatar: "🏢",
+      "Their team understood our requirements clearly and delivered a modern, conversion-focused website on time.",
   },
 ];
 
-const StarRating = ({ rating }) => {
-  return (
-    <div className="flex gap-1 mb-4">
-      {[...Array(5)].map((_, i) => (
-        <span
-          key={i}
-          className={`text-lg ${i < rating ? 'text-yellow-400' : 'text-slate-300'}`}
-        >
-          ★
-        </span>
-      ))}
-    </div>
-  );
-};
-
 const Testimonials = () => {
   return (
-    <section className="py-24 bg-gradient-to-br from-light to-white">
-      <Container>
-        <SectionHeader
-          title="What Clients Say"
-          subtitle="Trusted by growing brands across industries"
-        />
+    <section className="bg-slate-50 py-24">
+      <div className="max-w-7xl mx-auto px-4">
 
-        <div className="grid gap-8 md:grid-cols-2">
-          {testimonials.map((t, i) => (
-            <Card
-              key={i}
-              className="relative group overflow-hidden"
-              hover={true}
-              shadow="lg"
-              rounded="2xl"
+        {/* SECTION HEADER */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <h2 className="text-3xl md:text-4xl font-bold text-slate-900">
+            What Our Clients Say
+          </h2>
+          <p className="mt-4 text-slate-600">
+            Trusted by growing businesses across industries.
+          </p>
+        </div>
+
+        {/* TESTIMONIAL GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {testimonials.map((t, index) => (
+            <div
+              key={index}
+              className="relative bg-white border border-slate-200 rounded-2xl p-8
+              shadow-sm hover:shadow-xl transition-all duration-300"
             >
-              {/* Background decoration */}
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-primary/5 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
-
               {/* Quote Icon */}
-              <div className="absolute -top-4 -left-4 text-6xl text-primary/10 group-hover:text-primary/20 transition-colors duration-300">
-                “
+              <div className="absolute -top-4 -left-4 h-10 w-10 rounded-full
+              bg-primary text-white flex items-center justify-center shadow-md">
+                <Quote size={18} />
               </div>
 
-              <div className="relative z-10">
-                <StarRating rating={t.rating} />
-
-                <p className="text-slate-700 mb-6 text-lg italic leading-relaxed">
-                  {t.message}
-                </p>
-
-                <div className="flex items-center border-t pt-4">
-                  <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center text-2xl mr-4">
-                    {t.avatar}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-slate-800">{t.name}</h4>
-                    <p className="text-sm text-slate-500">{t.role}</p>
-                  </div>
-                </div>
+              {/* Rating */}
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    size={16}
+                    className="fill-primary text-primary"
+                  />
+                ))}
               </div>
-            </Card>
+
+              {/* Message */}
+              <p className="text-slate-700 leading-relaxed mb-6">
+                “{t.message}”
+              </p>
+
+              {/* Client Info */}
+              <div className="border-t pt-4">
+                <p className="font-semibold text-slate-900">{t.name}</p>
+                <p className="text-sm text-slate-500">{t.role}</p>
+              </div>
+            </div>
           ))}
         </div>
 
-        {/* Call to action */}
-        <div className="text-center mt-12">
-          <p className="text-slate-600 mb-4">Ready to join our satisfied clients?</p>
-          <button className="text-primary font-semibold hover:text-primary/80 transition-colors">
-            Read More Reviews →
-          </button>
+        {/* TRUST FOOTER */}
+        <div className="mt-14 text-center">
+          <p className="text-slate-600 mb-4">
+            Join 500+ businesses that trust Fuse Market.
+          </p>
+          <a
+            href="/contact"
+            className="inline-flex items-center text-primary font-medium hover:underline"
+          >
+            Start your project with us →
+          </a>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };

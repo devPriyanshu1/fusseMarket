@@ -3,67 +3,31 @@ import SectionHeader from "../common/SectionHeader";
 import Card from "../common/Card";
 
 const steps = [
-  {
-    title: "Discover",
-    desc: "We analyze your business goals, target audience, and current challenges to create a solid foundation.",
-    icon: "🔍",
-    number: "01",
-  },
-  {
-    title: "Plan",
-    desc: "Develop a comprehensive strategy with data-driven insights and measurable objectives.",
-    icon: "📋",
-    number: "02",
-  },
-  {
-    title: "Execute",
-    desc: "Implement the strategy with precision, using cutting-edge tools and best practices.",
-    icon: "⚡",
-    number: "03",
-  },
-  {
-    title: "Scale",
-    desc: "Monitor performance, optimize results, and scale successful strategies for maximum growth.",
-    icon: "📈",
-    number: "04",
-  },
+  { number: "01", title: "Discover", icon: "🔍", desc: "Understand goals and challenges" },
+  { number: "02", title: "Plan", icon: "📋", desc: "Create a data-driven strategy" },
+  { number: "03", title: "Execute", icon: "⚡", desc: "Build and launch efficiently" },
+  { number: "04", title: "Scale", icon: "📈", desc: "Optimize and grow continuously" },
 ];
 
 const Process = () => {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-gradient-to-b from-light to-white">
       <Container>
         <SectionHeader
           title="How We Work"
-          subtitle="Our proven 4-step process ensures your success from strategy to execution."
+          subtitle="A proven 4-step process that delivers results."
         />
 
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, i) => (
-            <div key={i} className="relative">
-              {/* Connection line */}
-              {i < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-full w-full h-0.5 bg-gradient-to-r from-primary to-transparent transform -translate-x-8"></div>
-              )}
-
-              <Card className="text-center relative group" hover={true}>
-                <div className="absolute -top-4 -right-4 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-bold text-lg shadow-lg">
-                  {step.number}
-                </div>
-
-                <div className="text-5xl mb-4 group-hover:scale-110 transition-transform duration-300">
-                  {step.icon}
-                </div>
-
-                <h3 className="font-semibold text-xl mb-3 text-slate-800">
-                  {step.title}
-                </h3>
-
-                <p className="text-slate-600 text-sm leading-relaxed">
-                  {step.desc}
-                </p>
-              </Card>
-            </div>
+            <Card key={i} className="text-center">
+              <div className="text-4xl mb-4">{step.icon}</div>
+              <div className="text-primary font-bold mb-2">
+                {step.number}
+              </div>
+              <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
+              <p className="text-sm text-slate-600">{step.desc}</p>
+            </Card>
           ))}
         </div>
       </Container>

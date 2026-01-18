@@ -1,45 +1,61 @@
+import { TrendingUp, ShieldCheck, Users } from "lucide-react";
 import Button from "../common/Button";
-import React from 'react';
-import './Hero.css';
+import Container from "../common/Container";
+import heroBg from "../../assets/hero-bg.jpg";
+import "./Hero.css";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-primary via-primary to-secondary text-white overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/3 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
+    <section
+      className="hero-section"
+      style={{ backgroundImage: `url(${heroBg})` }}
+    >
+      <div className="hero-overlay" />
 
-      <div className="relative z-10 max-w-4xl text-center px-4">
-        <div className="animate-fade-in">
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
-            Welcome to Our Industry Solutions
+      <Container className="hero-content">
+        <div className="max-w-3xl mx-auto text-center animate-fade-in">
+
+          <h1 className="hero-title">
+            We Build Digital Products <br />
+            <span className="hero-accent">That Scale Businesses</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed">
-            Tailored services for Technology, Healthcare, Finance, and more!
+          <p className="hero-subtitle">
+            High-impact digital solutions built to drive real business growth.
           </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button href="/services" size="lg" className="shadow-2xl">
-              Explore Our Services
-              <span className="ml-2">→</span>
+          <div className="hero-actions">
+            <Button href="/services" size="lg">
+              Explore Services →
             </Button>
 
-            <Button href="/contact" variant="outline" size="lg" className="border-2 border-white text-white hover:bg-white hover:text-primary shadow-2xl">
-              Contact Us
+            <Button
+              href="/contact"
+              variant="outline"
+              size="lg"
+              className="btn-outline"
+            >
+              Get Free Consultation
             </Button>
           </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
+          <div className="hero-trust">
+            <div className="trust-item">
+              <Users size={18} />
+              <span>500+ Brands</span>
+            </div>
+            <div className="trust-item">
+              <TrendingUp size={18} />
+              <span>ROI-Driven Strategy</span>
+            </div>
+            <div className="trust-item">
+              <ShieldCheck size={18} />
+              <span>Trusted Nationwide</span>
+            </div>
           </div>
+
         </div>
-      </div>
+      </Container>
     </section>
   );
 };
