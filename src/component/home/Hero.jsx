@@ -1,6 +1,7 @@
 import { TrendingUp, ShieldCheck, Users, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import Button from "../common/Button";
+import "./Hero.css";
 
 const Hero = () => {
   const [textIndex, setTextIndex] = useState(0);
@@ -36,7 +37,6 @@ const Hero = () => {
               href="/services"
               size="lg"
               className="inline-flex items-center justify-center px-6 py-3 bg-white accent/90 text-black font-semibold rounded-full hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-              
             >
               Discover Services
               <span className="ml-2">→</span>
