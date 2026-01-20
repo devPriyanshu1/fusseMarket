@@ -1,17 +1,43 @@
-# React + Vite
+# Fusse Market – Official Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the source code for the official website of **Fusse Market**, a digital consulting and growth-focused company delivering modern, scalable, and performance-driven digital solutions.
 
-Currently, two official plugins are available:
+The website reflects Fusse Market’s brand identity with a strong emphasis on clarity, usability, and a premium user experience across devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## 🌐 Official Website
+https://fusemarket.in/
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧱 Technology Stack
+- **React** (Vite)
+- **Tailwind CSS**
+- **Framer Motion** (UI animations)
+- **Lucide Icons**
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# test
+---
+
+## ✨ Website Highlights
+- Modern, responsive, mobile-first design
+- Premium visual language with subtle micro-interactions
+- Clear information architecture for services and company story
+- Optimized performance and clean, maintainable component structure
+- Scalable foundation for future enhancements
+
+---
+
+## 🏢 About Fusse Market
+Fusse Market is a digital consulting company focused on helping businesses grow through strategic web development, digital marketing, UI/UX design, and brand-led solutions.
+
+The company partners with businesses across industries to create meaningful digital experiences that support long-term growth and measurable outcomes.
+
+---
+
+## 📌 Notes
+This project represents the ongoing development of Fusse Market’s digital presence and is actively maintained to align with evolving business goals, branding, and user experience standards.
+
+---
+
+© 2026 Fusse Market. All rights reserved.
