@@ -26,20 +26,6 @@ const iconMap = {
   Cloud,
 };
 
-// Helper function to ensure color contrast
-const getContrastColor = (hexColor) => {
-  // Convert hex to RGB
-  const r = parseInt(hexColor.slice(1, 3), 16);
-  const g = parseInt(hexColor.slice(3, 5), 16);
-  const b = parseInt(hexColor.slice(5, 7), 16);
-  
-  // Calculate luminance
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  
-  // Return white for dark colors, dark for light colors
-  return luminance > 0.5 ? '#1e293b' : '#ffffff';
-};
-
 // Helper function to darken color for better visibility
 const darkenColor = (hexColor, amount = 30) => {
   const num = parseInt(hexColor.replace("#", ""), 16);
@@ -88,12 +74,11 @@ const ServiceCard = ({ service }) => {
             )}
           </motion.div>
 
-          {/* Industry badge with better contrast */}
+          {/* Industry badge with WHITE text always */}
           <span
-            className="inline-block px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm"
+            className="inline-block px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm text-white"
             style={{ 
-              backgroundColor: darkerColor, 
-              color: getContrastColor(darkerColor),
+              backgroundColor: darkerColor,
             }}
           >
             {service.industry.toUpperCase()}

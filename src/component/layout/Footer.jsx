@@ -4,7 +4,7 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Twitter,
+  Github,
   Linkedin,
   Instagram,
 } from "lucide-react";
