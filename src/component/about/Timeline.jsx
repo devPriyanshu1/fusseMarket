@@ -129,26 +129,21 @@ const Timeline = () => {
           {/* Ultra Premium Header */}
           <div className="relative max-w-4xl mx-auto text-center mb-24">
             {/* Floating Badge */}
-            <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-primary/20 via-purple-500/20 to-blue-500/20 border border-slate-300/50 backdrop-blur-xl mb-8 shadow-2xl shadow-primary/20 animate-float">
-              <Zap className="w-5 h-5 text-primary animate-pulse" />
-              <p className="text-sm font-bold text-slate-700 uppercase tracking-[0.2em]">
-                Milestones That Shaped Our Growth
-              </p>
-              <Sparkles className="w-5 h-5 text-purple-500 animate-pulse" style={{ animationDelay: '0.3s' }} />
-            </div>
+           
 
             {/* Main Heading */}
             <h2 className="text-6xl md:text-7xl lg:text-8xl font-black mb-8 leading-none">
-              <span className="bg-gradient-to-r from-slate-800 via-slate-700 to-slate-800 bg-clip-text text-transparent drop-shadow-2xl">
+              <span>
                 Our
               </span>
               <br />
               <span className="relative inline-block">
-                <span className="bg-gradient-to-r from-primary via-purple-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
+                <span>
                   Journey
                 </span>
                 {/* Animated Underline */}
-                <div className="absolute -bottom-3 left-0 right-0 h-1.5 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full animate-pulse" />
+                {/* <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-primary rounded-full" /> */}
+
               </span>
             </h2>
 
