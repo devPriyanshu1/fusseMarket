@@ -83,27 +83,27 @@ const Timeline = () => {
   }, []);
 
   return (
-    <section className="relative bg-gradient-to-b from-slate-50 via-slate-200 to-slate-900 overflow-hidden">
-      <div className="relative py-28">
+    <section className="relative bg-gradient-to-b from-slate-50 via-slate-100 to-slate-900 overflow-hidden">
+      <div className="relative py-16 md:py-28">
         <Container>
 
           {/* HEADER */}
-          <div className="max-w-4xl mx-auto text-center mb-20">
-            <h2 className="text-6xl font-black text-slate-900 mb-6">
+          <div className="max-w-4xl mx-auto text-center mb-12 md:mb-20 px-4">
+            <h2 className="text-4xl md:text-6xl font-black text-slate-900 mb-4 md:mb-6">
               Our Journey
             </h2>
-            <p className="text-xl text-slate-600">
+            <p className="text-lg md:text-xl text-slate-600">
               From humble beginnings to industry innovation
             </p>
           </div>
 
           {/* TIMELINE */}
-          <div className="relative max-w-6xl mx-auto">
+          <div className="relative max-w-6xl mx-auto px-4">
 
-            {/* CENTER VERTICAL LINE */}
-            <div className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[2px] bg-primary/40" />
+            {/* CENTER VERTICAL LINE - Enhanced visibility */}
+            <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-[3px] bg-gradient-to-b from-primary/70 via-primary/50 to-primary/30 shadow-sm" />
 
-            <div className="space-y-24">
+            <div className="space-y-16 md:space-y-24">
               {timelineData.map((item, index) => {
                 const Icon = item.icon;
                 const isEven = index % 2 === 0;
@@ -117,6 +117,7 @@ const Timeline = () => {
                       isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                     }`}
                   >
+                    {/* DESKTOP VIEW */}
                     <div className="hidden md:grid md:grid-cols-2 gap-16 items-center">
 
                       {/* LEFT CARD (EVEN) */}
@@ -125,21 +126,21 @@ const Timeline = () => {
                           <div className="relative inline-block max-w-lg ml-auto">
 
                             {/* CARD */}
-                            <div className="relative bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
-                              <span className={`inline-block px-4 py-2 rounded-full bg-gradient-to-r ${item.gradient} text-white text-xs font-semibold mb-4`}>
+                            <div className="relative bg-white rounded-3xl p-8 shadow-xl border border-slate-200 hover:shadow-2xl transition-shadow duration-300">
+                              <span className={`inline-block px-4 py-2 rounded-full bg-gradient-to-r ${item.gradient} text-white text-xs font-semibold mb-4 shadow-md`}>
                                 {item.year}
                               </span>
                               <h3 className="text-2xl font-bold text-slate-900 mb-3">
                                 {item.title}
                               </h3>
-                              <p className="text-slate-600">
+                              <p className="text-slate-600 leading-relaxed">
                                 {item.description}
                               </p>
                             </div>
                           </div>
                           
-                          {/* HORIZONTAL LINE (CARD → CENTER) with gradient */}
-                          <div className={`absolute top-1/2 right-0 w-8 h-[3px] bg-gradient-to-r ${item.gradient} -translate-y-1/2 rounded-full`} />
+                          {/* HORIZONTAL LINE */}
+                          <div className={`absolute top-1/2 right-0 w-8 h-[3px] bg-gradient-to-r ${item.gradient} -translate-y-1/2 rounded-full shadow-sm`} />
                         </div>
                       )}
 
@@ -151,43 +152,43 @@ const Timeline = () => {
                             <div className="relative inline-block max-w-lg mr-auto">
 
                               {/* CARD */}
-                              <div className="relative bg-white rounded-3xl p-8 shadow-xl border border-slate-200">
-                                <span className={`inline-block px-4 py-2 rounded-full bg-gradient-to-r ${item.gradient} text-white text-xs font-semibold mb-4`}>
+                              <div className="relative bg-white rounded-3xl p-8 shadow-xl border border-slate-200 hover:shadow-2xl transition-shadow duration-300">
+                                <span className={`inline-block px-4 py-2 rounded-full bg-gradient-to-r ${item.gradient} text-white text-xs font-semibold mb-4 shadow-md`}>
                                   {item.year}
                                 </span>
                                 <h3 className="text-2xl font-bold text-slate-900 mb-3">
                                   {item.title}
                                 </h3>
-                                <p className="text-slate-600">
+                                <p className="text-slate-600 leading-relaxed">
                                   {item.description}
                                 </p>
                               </div>
                             </div>
                             
-                            {/* HORIZONTAL LINE (CENTER → CARD) with gradient */}
-                            <div className={`absolute top-1/2 left-0 w-8 h-[3px] bg-gradient-to-r ${item.gradient} -translate-y-1/2 rounded-full`} />
+                            {/* HORIZONTAL LINE */}
+                            <div className={`absolute top-1/2 left-0 w-8 h-[3px] bg-gradient-to-r ${item.gradient} -translate-y-1/2 rounded-full shadow-sm`} />
                           </div>
                         </>
                       )}
                     </div>
 
                     {/* CENTER ICON */}
-                    <div className="absolute left-8 md:left-1/2 md:-translate-x-1/2 top-1/2 -translate-y-1/2 z-10">
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-xl`}>
-                        <Icon className="w-8 h-8 text-white" />
+                    <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-6 md:top-1/2 md:-translate-y-1/2 -translate-x-1/2 z-10">
+                      <div className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center shadow-xl ring-4 ring-white`}>
+                        <Icon className="w-7 h-7 md:w-8 md:h-8 text-white" strokeWidth={2.5} />
                       </div>
                     </div>
 
                     {/* MOBILE VIEW */}
-                    <div className="md:hidden pl-20">
-                      <div className="bg-white rounded-3xl p-6 shadow-xl border border-slate-200">
-                        <span className={`inline-block px-3 py-1 rounded-full bg-gradient-to-r ${item.gradient} text-white text-xs font-semibold mb-3`}>
+                    <div className="md:hidden pl-20 pr-4">
+                      <div className="bg-white rounded-2xl p-6 shadow-lg border border-slate-200">
+                        <span className={`inline-block px-3 py-1.5 rounded-full bg-gradient-to-r ${item.gradient} text-white text-xs font-bold mb-3 shadow-md`}>
                           {item.year}
                         </span>
                         <h3 className="text-xl font-bold text-slate-900 mb-2">
                           {item.title}
                         </h3>
-                        <p className="text-slate-600 text-sm">
+                        <p className="text-slate-600 text-sm leading-relaxed">
                           {item.description}
                         </p>
                       </div>
