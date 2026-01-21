@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Container from "../common/Container";
 import SectionHeader from "../common/SectionHeader";
@@ -25,7 +25,7 @@ const Testimonials = () => {
     progressRef.current = setInterval(() => {
       setProgress((prev) => {
         // Calculate how much to add based on the delay
-        const increment = (100 / SLIDE_DELAY) * stepTime;
+        const increment = (100 / AUTO_SLIDE_INTERVAL) * stepTime;
         const next = prev + increment;
 
         // Safety check to ensure it doesn't exceed 100
@@ -37,7 +37,7 @@ const Testimonials = () => {
     intervalRef.current = setInterval(() => {
       // Move to next slide
       setIndex((prev) => (prev + 1) % total);
-    }, SLIDE_DELAY);
+    }, AUTO_SLIDE_INTERVAL);
 
     // CLEANUP: vital for preventing memory leaks and weird jumps
     return () => {
@@ -48,8 +48,7 @@ const Testimonials = () => {
 
   const getItem = (offset) => {
     const i =
-      (index + offset + testimonialsData.length) %
-      testimonialsData.length;
+      (index + offset + testimonialsData.length) % testimonialsData.length;
     return testimonialsData[i];
   };
 
