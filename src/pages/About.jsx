@@ -63,9 +63,8 @@ const About = () => {
         <Container>
           <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
             Ready to grow with{" "}
-            <span className="bg-gradient-to-r from-primary to-purple-400 bg-clip-text text-transparent">
               Fuse Market?
-            </span>
+           
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto mb-10">
             Let’s build scalable digital systems that actually convert.
