@@ -116,7 +116,6 @@ const Testimonials = () => {
                     className="absolute inset-0 w-full h-full object-cover"
                     whileHover={{ scale: 1.06 }}
                     transition={{ duration: 0.6 }}
-                    whileHover={{ scale: 1.05 }}
                   />
 
                   {/* GRADIENT OVERLAY */}
