@@ -29,20 +29,6 @@ const ContactInfo = () => {
     <div className="space-y-8">
       {/* Header */}
       <div>
-        <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-4"
-          style={{
-            background: "rgba(216, 77, 121, 0.1)",
-            border: "1px solid rgba(216, 77, 121, 0.2)",
-          }}
-        >
-          <span
-            className="text-sm font-semibold"
-            style={{ color: "var(--color-primary)" }}
-          >
-            Contact Information
-          </span>
-        </div>
         <h2
           className="text-3xl md:text-4xl font-bold mb-4"
           style={{ color: "var(--color-dark)" }}

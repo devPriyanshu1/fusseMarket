@@ -107,21 +107,7 @@ const ServicesPreview = () => {
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-20">
-          <div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
-            style={{
-              background: "rgba(216, 77, 121, 0.1)",
-              border: "1px solid rgba(216, 77, 121, 0.3)",
-            }}
-          >
-            <Sparkles size={16} style={{ color: "#d84d79" }} />
-            <span
-              className="text-sm font-semibold"
-              style={{ color: "#d84d79" }}
-            >
-              What We Offer
-            </span>
-          </div>
+          
           <h2
             className="text-5xl md:text-6xl font-bold mb-6"
             style={{
@@ -225,21 +211,7 @@ const ServicesPreview = () => {
           ></div>
 
           <div className="max-w-3xl relative z-10">
-            <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
-              style={{
-                background: "rgba(180, 167, 214, 0.2)",
-                border: "1px solid rgba(180, 167, 214, 0.3)",
-              }}
-            >
-              <Sparkles size={16} style={{ color: "#b4a7d6" }} />
-              <span
-                className="text-sm font-semibold"
-                style={{ color: "#b4a7d6" }}
-              >
-                About Us
-              </span>
-            </div>
+            
             <h3 className="text-4xl font-bold mb-6 text-white">Our Story</h3>
             <p className="text-slate-300 text-lg leading-relaxed">
               Every product we create is shaped by real needs, real stories, and
