@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { NavLink, Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import logo from "../../assets/logo.png";
@@ -7,6 +7,7 @@ const Navbar = () => {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const mobileMenuRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +22,27 @@ const Navbar = () => {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
 
   const navLinks = [
     { name: "Home", path: "/" },
@@ -83,7 +105,6 @@ const Navbar = () => {
                 className={({ isActive }) =>
                   `text-sm lg:text-base font-semibold px-3 lg:px-4 py-2 transition-all duration-200 ${
                     isActive ? "border-b-3" : "hover:bg-opacity-10"
-
                   }`
                 }
                 style={({ isActive }) => ({
@@ -144,20 +165,18 @@ const Navbar = () => {
       {/* MOBILE MENU */}
       {isMobileMenuOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop overlay */}
           <div
-            className="fixed inset-0 z-40 md:hidden transition-opacity duration-200"
-            style={{
-              backgroundColor: "rgba(0, 0, 0, 0.4)",
-            }}
+            className="fixed inset-0 bg-black/50 z-40 md:hidden"
+            style={{ top: "var(--navbar-height, 5rem)" }}
             onClick={() => setIsMobileMenuOpen(false)}
           />
 
           {/* Mobile menu panel */}
           <nav
-            className="fixed top-16 sm:top-20 left-0 right-0 z-50 md:hidden"
+            ref={mobileMenuRef}
+            className="fixed top-16 sm:top-20 left-0 right-0 z-50 md:hidden bg-black/70"
             style={{
-              backgroundColor: "white",
               borderBottom: "1px solid rgba(216, 77, 121, 0.2)",
               boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",
             }}
