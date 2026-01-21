@@ -4,7 +4,7 @@ import {
   Phone,
   MapPin,
   Facebook,
-  Twitter,
+  Github,
   Linkedin,
   Instagram,
 } from "lucide-react";
@@ -25,16 +25,42 @@ const Footer = () => {
             </p>
             {/* Social Links */}
             <div className="flex gap-3 pt-2">
-              {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300"
-                  aria-label="social"
-                >
-                  <Icon size={18} />
-                </a>
-              ))}
+              <a
+                href="https://www.facebook.com/people/The-Fusse-Market/61579758510284/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300"
+                aria-label="Facebook"
+              >
+                <Facebook size={18} />
+              </a>
+              <a
+                href="https://github.com/SarveshCS"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300"
+                aria-label="GitHub"
+              >
+                <Github size={18} />
+              </a>
+              <a
+                href="https://in.linkedin.com/company/thefussemarket"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-blue-600 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300"
+                aria-label="LinkedIn"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a
+                href="https://www.instagram.com/the_fusse_market/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 rounded-lg bg-slate-800 hover:bg-pink-600 text-slate-400 hover:text-white flex items-center justify-center transition-all duration-300"
+                aria-label="Instagram"
+              >
+                <Instagram size={18} />
+              </a>
             </div>
           </div>
 
@@ -91,12 +117,15 @@ const Footer = () => {
                   size={18}
                   className="text-blue-400 mt-0.5 flex-shrink-0"
                 />
-                <div>
+                <div className="flex-1 min-w-0">
                   <p className="text-xs text-slate-500 uppercase tracking-wide">
                     Email
                   </p>
-                  <p className="text-sm text-slate-300 hover:text-blue-400 transition-colors font-medium">
-                    contact@fusemarket.com
+                  <p className="text-sm text-slate-300 hover:text-blue-400 transition-colors font-medium break-words">
+                    contact@fusemarket.in
+                  </p>
+                  <p className="text-sm text-slate-300 hover:text-blue-400 transition-colors font-medium break-words">
+                    fusemarket.fm@gmail.com
                   </p>
                 </div>
               </li>
@@ -110,7 +139,7 @@ const Footer = () => {
                     Phone
                   </p>
                   <p className="text-sm text-slate-300 hover:text-blue-400 transition-colors font-medium">
-                    +91 XXXXX XXXXX
+                    +91 8418818469
                   </p>
                 </div>
               </li>
