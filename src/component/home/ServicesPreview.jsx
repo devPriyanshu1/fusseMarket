@@ -75,7 +75,8 @@ const mainServices = [
 const whyChooseUs = [
   {
     title: "Innovative Ideas",
-    description: "Creative solutions that push boundaries and redefine what's possible.",
+    description:
+      "Creative solutions that push boundaries and redefine what's possible.",
     icon: Sparkles,
   },
   {
@@ -96,11 +97,11 @@ const ServicesPreview = () => {
       {/* Background decorative elements */}
       <div
         className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 blur-3xl"
-        style={{ background: "radial-gradient(circle, #8B5CF6, transparent)" }}
+        style={{ background: "radial-gradient(circle, #b4a7d6, transparent)" }}
       ></div>
       <div
         className="absolute bottom-0 left-0 w-96 h-96 rounded-full opacity-10 blur-3xl"
-        style={{ background: "radial-gradient(circle, #EC4899, transparent)" }}
+        style={{ background: "radial-gradient(circle, #d84d79, transparent)" }}
       ></div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
@@ -109,23 +110,22 @@ const ServicesPreview = () => {
           <div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
             style={{
-              background:
-                "linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1))",
-              border: "1px solid rgba(139, 92, 246, 0.2)",
+              background: "rgba(216, 77, 121, 0.1)",
+              border: "1px solid rgba(216, 77, 121, 0.3)",
             }}
           >
-            <Sparkles size={16} style={{ color: "#8B5CF6" }} />
-            <span className="text-sm font-semibold" style={{ color: "#8B5CF6" }}>
+            <Sparkles size={16} style={{ color: "#d84d79" }} />
+            <span
+              className="text-sm font-semibold"
+              style={{ color: "#d84d79" }}
+            >
               What We Offer
             </span>
           </div>
           <h2
             className="text-5xl md:text-6xl font-bold mb-6"
             style={{
-              background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
+              color: "#2d1e2e",
             }}
           >
             Our Services
@@ -158,7 +158,7 @@ const ServicesPreview = () => {
                   style={{
                     background: "rgba(255, 255, 255, 0.8)",
                     backdropFilter: "blur(10px)",
-                    border: "1px solid rgba(139, 92, 246, 0.1)",
+                    border: "1px solid rgba(180, 167, 214, 0.2)",
                     boxShadow: "0 4px 20px rgba(0, 0, 0, 0.05)",
                   }}
                 >
@@ -202,7 +202,7 @@ const ServicesPreview = () => {
         <div
           className="rounded-3xl p-12 md:p-16 mb-24 relative overflow-hidden"
           style={{
-            background: "linear-gradient(135deg, #0f172a 0%, #1e293b 100%)",
+            background: "linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%)",
             boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)",
           }}
         >
@@ -219,19 +219,24 @@ const ServicesPreview = () => {
           {/* Gradient orbs */}
           <div
             className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-20 blur-3xl"
-            style={{ background: "radial-gradient(circle, #8B5CF6, transparent)" }}
+            style={{
+              background: "radial-gradient(circle, #b4a7d6, transparent)",
+            }}
           ></div>
 
           <div className="max-w-3xl relative z-10">
             <div
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
               style={{
-                background: "rgba(139, 92, 246, 0.2)",
-                border: "1px solid rgba(139, 92, 246, 0.3)",
+                background: "rgba(180, 167, 214, 0.2)",
+                border: "1px solid rgba(180, 167, 214, 0.3)",
               }}
             >
-              <Sparkles size={16} style={{ color: "#a78bfa" }} />
-              <span className="text-sm font-semibold" style={{ color: "#a78bfa" }}>
+              <Sparkles size={16} style={{ color: "#b4a7d6" }} />
+              <span
+                className="text-sm font-semibold"
+                style={{ color: "#b4a7d6" }}
+              >
                 About Us
               </span>
             </div>
@@ -252,13 +257,10 @@ const ServicesPreview = () => {
             <h3
               className="text-4xl md:text-5xl font-bold mb-4"
               style={{
-                background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
+                color: "#2d1e2e",
               }}
             >
-              Why Choose Fusse Market?
+              Why Choose FusseMarket?
             </h3>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               Our approach combines creative brilliance with advanced analytics,
@@ -281,10 +283,9 @@ const ServicesPreview = () => {
                   <div
                     className="p-8 rounded-2xl transition-all duration-500 hover:scale-105 cursor-pointer h-full"
                     style={{
-                      background:
-                        "linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7))",
+                      background: "rgba(255, 255, 255, 0.9)",
                       backdropFilter: "blur(10px)",
-                      border: "1px solid rgba(139, 92, 246, 0.2)",
+                      border: "1px solid rgba(180, 167, 214, 0.3)",
                       boxShadow: "0 8px 32px rgba(0, 0, 0, 0.08)",
                     }}
                   >
@@ -292,8 +293,8 @@ const ServicesPreview = () => {
                     <div
                       className="inline-flex items-center justify-center w-16 h-16 rounded-full mb-6 transition-all duration-500 group-hover:scale-110"
                       style={{
-                        background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
-                        boxShadow: "0 8px 24px rgba(139, 92, 246, 0.4)",
+                        background: "#d84d79",
+                        boxShadow: "0 8px 24px rgba(216, 77, 121, 0.4)",
                       }}
                     >
                       <IconComponent size={28} color="white" strokeWidth={2} />
@@ -318,9 +319,9 @@ const ServicesPreview = () => {
             to="/services"
             className="inline-flex items-center justify-center gap-3 px-10 py-5 font-semibold text-lg rounded-full transition-all duration-500 hover:scale-105 hover:shadow-2xl group relative overflow-hidden"
             style={{
-              background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
+              background: "#d84d79",
               color: "white",
-              boxShadow: "0 10px 40px rgba(139, 92, 246, 0.4)",
+              boxShadow: "0 10px 40px rgba(216, 77, 121, 0.4)",
             }}
           >
             {/* Shine effect */}

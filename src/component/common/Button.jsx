@@ -10,26 +10,38 @@ const Button = ({
   ...props
 }) => {
   const base =
-    "inline-flex items-center justify-center rounded-full font-semibold transition-all duration-300 active:scale-95";
+    "inline-flex items-center justify-center rounded-full font-bold transition-all duration-300 active:scale-95 hover:scale-105";
 
   const sizes = {
-    sm: "px-4 py-2 text-sm",
-    md: "px-6 py-3 text-sm",
-    lg: "px-8 py-4 text-base",
+    sm: "px-5 py-2.5 text-sm",
+    md: "px-7 py-3.5 text-base",
+    lg: "px-10 py-4 text-base",
   };
 
-  const variants = {
-    primary:
-      "bg-primary text-white hover:opacity-90 shadow-[0_10px_40px_rgba(255,44,85,0.35)]",
-    outline:
-      "border border-white/30 text-white hover:bg-white hover:text-slate-900",
+  const getVariantStyles = () => {
+    if (variant === "primary") {
+      return {
+        background: "var(--color-primary)",
+        color: "white",
+        boxShadow: "0 12px 40px rgba(216, 77, 121, 0.4)",
+      };
+    } else if (variant === "outline") {
+      return {
+        background: "white",
+        color: "var(--color-dark)",
+        border: "2px solid rgba(180, 167, 214, 0.4)",
+        boxShadow: "0 4px 20px rgba(0, 0, 0, 0.05)",
+      };
+    }
+    return {};
   };
 
-  const classes = `${base} ${sizes[size]} ${variants[variant]} ${className}`;
+  const classes = `${base} ${sizes[size]} ${className}`;
+  const styles = getVariantStyles();
 
   if (to) {
     return (
-      <Link to={to} className={classes}>
+      <Link to={to} className={classes} style={styles}>
         {children}
       </Link>
     );
@@ -37,14 +49,14 @@ const Button = ({
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} style={styles}>
         {children}
       </a>
     );
   }
 
   return (
-    <button className={classes} {...props}>
+    <button className={classes} style={styles} {...props}>
       {children}
     </button>
   );

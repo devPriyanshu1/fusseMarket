@@ -1,22 +1,42 @@
-const Input = ({
-  label,
-  error,
-  className = "",
-  ...props
-}) => {
+const Input = ({ label, error, className = "", ...props }) => {
   return (
-    <div className="mb-4">
+    <div>
       {label && (
-        <label className="block text-sm font-medium text-slate-700 mb-2">
+        <label
+          className="block text-sm font-semibold mb-2.5"
+          style={{ color: "var(--color-dark)" }}
+        >
           {label}
         </label>
       )}
       <input
-        className={`w-full px-4 py-3 border border-slate-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-colors ${error ? 'border-red-500' : ''} ${className}`}
+        className={`w-full px-5 py-3.5 rounded-xl transition-all duration-300 focus:outline-none ${className}`}
+        style={{
+          background: "white",
+          border: error
+            ? "2px solid #ef4444"
+            : "2px solid rgba(180, 167, 214, 0.2)",
+          color: "var(--color-dark)",
+          fontSize: "15px",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.04)",
+        }}
+        onFocus={(e) => {
+          e.target.style.borderColor = "var(--color-primary)";
+          e.target.style.boxShadow =
+            "0 0 0 4px rgba(216, 77, 121, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08)";
+        }}
+        onBlur={(e) => {
+          if (!error) {
+            e.target.style.borderColor = "rgba(180, 167, 214, 0.2)";
+            e.target.style.boxShadow = "0 2px 8px rgba(0, 0, 0, 0.04)";
+          }
+        }}
         {...props}
       />
       {error && (
-        <p className="mt-1 text-sm text-red-600">{error}</p>
+        <p className="mt-2 text-sm font-medium" style={{ color: "#ef4444" }}>
+          {error}
+        </p>
       )}
     </div>
   );
