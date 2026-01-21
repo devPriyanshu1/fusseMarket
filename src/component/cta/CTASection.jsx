@@ -24,7 +24,7 @@ const CTASection = () => {
   ];
 
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden">
+    <section className="py-0 md:py-24 lg:py-32 bg-linear-to-b from-slate-50 via-white to-slate-50 relative overflow-hidden min-h-screen md:min-h-0">
       {/* Background decorative elements */}
       <div
         className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10 blur-3xl pointer-events-none"
@@ -41,10 +41,10 @@ const CTASection = () => {
         }}
       ></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+      <div className="max-w-7xl mx-auto px-0 md:px-4 lg:px-6 relative z-10 h-full">
         {/* Main Card */}
         <div
-          className="max-w-5xl mx-auto rounded-3xl p-8 md:p-16 lg:p-20"
+          className="w-full min-h-screen md:min-h-0 md:max-w-5xl mx-auto rounded-none md:rounded-3xl p-8 md:p-16 lg:p-20 flex flex-col justify-center"
           style={{
             background: "rgba(255, 255, 255, 0.8)",
             backdropFilter: "blur(10px)",
@@ -53,8 +53,6 @@ const CTASection = () => {
               "0 25px 80px rgba(216, 77, 121, 0.15), 0 15px 40px rgba(180, 167, 214, 0.1)",
           }}
         >
-          
-
           {/* Main heading */}
           <h2
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-6 text-center leading-[1.1] tracking-tight"

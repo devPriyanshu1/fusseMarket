@@ -8,6 +8,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const mobileMenuRef = useRef(null);
+  const hamburgerButtonRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -29,7 +30,9 @@ const Navbar = () => {
       if (
         isMobileMenuOpen &&
         mobileMenuRef.current &&
-        !mobileMenuRef.current.contains(event.target)
+        !mobileMenuRef.current.contains(event.target) &&
+        hamburgerButtonRef.current &&
+        !hamburgerButtonRef.current.contains(event.target)
       ) {
         setIsMobileMenuOpen(false);
       }
@@ -130,6 +133,7 @@ const Navbar = () => {
 
           {/* MOBILE HAMBURGER */}
           <button
+            ref={hamburgerButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 rounded-lg transition-all duration-200"
             style={{
@@ -175,7 +179,7 @@ const Navbar = () => {
           {/* Mobile menu panel */}
           <nav
             ref={mobileMenuRef}
-            className="fixed top-16 sm:top-20 left-0 right-0 z-50 md:hidden bg-black/70"
+            className="fixed top-16 sm:top-20 left-0 right-0 z-50 md:hidden bg-white"
             style={{
               borderBottom: "1px solid rgba(216, 77, 121, 0.2)",
               boxShadow: "0 4px 20px rgba(0, 0, 0, 0.1)",

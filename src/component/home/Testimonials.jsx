@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Container from "../common/Container";
 import SectionHeader from "../common/SectionHeader";
 import { testimonialsData } from "../../data/testimonialsData";
@@ -52,6 +53,14 @@ const Testimonials = () => {
     return testimonialsData[i];
   };
 
+  const handlePrev = () => {
+    setIndex((prev) => (prev - 1 + total) % total);
+  };
+
+  const handleNext = () => {
+    setIndex((prev) => (prev + 1) % total);
+  };
+
   const cards = [getItem(-1), getItem(0), getItem(1)];
 
   return (
@@ -80,6 +89,33 @@ const Testimonials = () => {
         />
 
         <div className="relative mt-16 md:mt-20">
+          {/* Navigation Arrows - Desktop Only */}
+          <button
+            onClick={handlePrev}
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 rounded-full transition-all duration-300 hover:scale-110"
+            style={{
+              background: "var(--color-primary)",
+              boxShadow: "0 4px 16px rgba(216, 77, 121, 0.4)",
+              color: "white",
+            }}
+            aria-label="Previous testimonial"
+          >
+            <ChevronLeft size={24} />
+          </button>
+
+          <button
+            onClick={handleNext}
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 items-center justify-center w-12 h-12 rounded-full transition-all duration-300 hover:scale-110"
+            style={{
+              background: "var(--color-primary)",
+              boxShadow: "0 4px 16px rgba(216, 77, 121, 0.4)",
+              color: "white",
+            }}
+            aria-label="Next testimonial"
+          >
+            <ChevronRight size={24} />
+          </button>
+
           <div className="flex justify-center gap-6 md:gap-10 px-4">
             {[-1, 0, 1].map((pos) => {
               const item = getItem(pos);
@@ -88,11 +124,11 @@ const Testimonials = () => {
               return (
                 <motion.div
                   key={`testimonial-${item.id}-${pos}`}
-                  className={`relative rounded-2xl overflow-hidden
+                  className={`group relative rounded-2xl overflow-hidden
                     ${
                       isCenter
-                        ? "w-[440px] h-[480px] shadow-2xl"
-                        : "w-[340px] h-[400px] opacity-50 hidden md:block"
+                        ? "w-full md:max-w-5xl h-[28rem] md:h-[34rem] shadow-2xl"
+                        : "hidden"
                     }`}
                   style={{
                     border: isCenter
@@ -160,15 +196,13 @@ const Testimonials = () => {
                       href={item.website}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 rounded-full w-fit transition-all duration-300"
+                      className="inline-flex items-center gap-2 text-sm font-semibold px-0 py-0 w-fit transition-all duration-300 opacity-0 group-hover:opacity-100 border-b-2 border-transparent hover:border-white"
                       style={{
-                        background: "var(--color-primary)",
                         color: "white",
-                        boxShadow: "0 4px 16px rgba(216, 77, 121, 0.4)",
                       }}
+                      initial={{ opacity: 0, y: 10 }}
                       whileHover={{
                         x: 4,
-                        boxShadow: "0 6px 20px rgba(216, 77, 121, 0.5)",
                       }}
                     >
                       Visit Website <span>→</span>

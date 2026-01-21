@@ -107,7 +107,6 @@ const ServicesPreview = () => {
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Header Section */}
         <div className="text-center mb-20">
-          
           <h2
             className="text-5xl md:text-6xl font-bold mb-6"
             style={{
@@ -116,6 +115,10 @@ const ServicesPreview = () => {
           >
             Our Services
           </h2>
+          <div
+            className="w-24 h-1.5 mx-auto mb-6"
+            style={{ backgroundColor: "var(--color-primary)" }}
+          ></div>
           <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
             We deliver a full spectrum of digital marketing solutions—from
             innovative social media campaigns and SEO mastery to custom web
@@ -183,37 +186,28 @@ const ServicesPreview = () => {
             );
           })}
         </div>
+      </div>
 
-        {/* Story Section */}
+      {/* Story Section - Full Width */}
+      <div className="w-full px-6 md:px-12 py-20 md:py-28 mb-24 relative overflow-hidden">
         <div
-          className="rounded-3xl p-12 md:p-16 mb-24 relative overflow-hidden"
+          className="max-w-5xl mx-auto px-4 relative z-10 py-16 md:py-20 rounded-2xl box-shadow-lg"
           style={{
-            background: "linear-gradient(135deg, #1a1a2e 0%, #0f0f1e 100%)",
-            boxShadow: "0 20px 60px rgba(0, 0, 0, 0.3)",
+            backgroundColor: "#fce8f0",
           }}
         >
-          {/* Animated background pattern */}
-          <div
-            className="absolute inset-0 opacity-5"
-            style={{
-              backgroundImage: `radial-gradient(circle at 20% 50%, white 2px, transparent 2px),
-                               radial-gradient(circle at 80% 80%, white 2px, transparent 2px)`,
-              backgroundSize: "60px 60px",
-            }}
-          ></div>
-
-          {/* Gradient orbs */}
-          <div
-            className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-20 blur-3xl"
-            style={{
-              background: "radial-gradient(circle, #b4a7d6, transparent)",
-            }}
-          ></div>
-
-          <div className="max-w-3xl relative z-10">
-            
-            <h3 className="text-4xl font-bold mb-6 text-white">Our Story</h3>
-            <p className="text-slate-300 text-lg leading-relaxed">
+          <div className="text-center space-y-8">
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+              Our Story
+            </h3>
+            <div
+              className="w-24 h-1.5 mx-auto"
+              style={{ backgroundColor: "var(--color-primary)" }}
+            ></div>
+            <p
+              className="text-lg md:text-xl lg:text-2xl leading-relaxed max-w-4xl mx-auto"
+              style={{ color: "var(--color-dark)" }}
+            >
               Every product we create is shaped by real needs, real stories, and
               real people like you. We believe in building solutions that
               matter—not just aesthetically pleasing, but functionally
@@ -222,7 +216,9 @@ const ServicesPreview = () => {
             </p>
           </div>
         </div>
+      </div>
 
+      <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Why Choose Us Section */}
         <div className="mb-20">
           <div className="text-center mb-16">
@@ -234,6 +230,10 @@ const ServicesPreview = () => {
             >
               Why Choose FusseMarket?
             </h3>
+            <div
+              className="w-24 h-1.5 mx-auto mb-4"
+              style={{ backgroundColor: "var(--color-primary)" }}
+            ></div>
             <p className="text-lg text-slate-600 max-w-3xl mx-auto">
               Our approach combines creative brilliance with advanced analytics,
               delivering bespoke strategies that captivate and convert a
