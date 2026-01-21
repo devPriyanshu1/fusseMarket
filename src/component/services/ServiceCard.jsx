@@ -26,8 +26,32 @@ const iconMap = {
   Cloud,
 };
 
+// Helper function to ensure color contrast
+const getContrastColor = (hexColor) => {
+  // Convert hex to RGB
+  const r = parseInt(hexColor.slice(1, 3), 16);
+  const g = parseInt(hexColor.slice(3, 5), 16);
+  const b = parseInt(hexColor.slice(5, 7), 16);
+  
+  // Calculate luminance
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  
+  // Return white for dark colors, dark for light colors
+  return luminance > 0.5 ? '#1e293b' : '#ffffff';
+};
+
+// Helper function to darken color for better visibility
+const darkenColor = (hexColor, amount = 30) => {
+  const num = parseInt(hexColor.replace("#", ""), 16);
+  const r = Math.max(0, (num >> 16) - amount);
+  const g = Math.max(0, ((num >> 8) & 0x00FF) - amount);
+  const b = Math.max(0, (num & 0x0000FF) - amount);
+  return "#" + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+};
+
 const ServiceCard = ({ service }) => {
   const IconComponent = iconMap[service.icon];
+  const darkerColor = darkenColor(service.color, 30);
 
   return (
     <motion.div
@@ -43,50 +67,43 @@ const ServiceCard = ({ service }) => {
 
       {/* Content container */}
       <div className="relative z-10">
-        {/* Icon with background */}
-        <div className="mb-6 inline-flex">
+        {/* Top row: Icon (left) and Industry badge (right) */}
+        <div className="flex items-start justify-between mb-6">
+          {/* Icon with border - using darker color for better visibility */}
           <motion.div
             whileHover={{ scale: 1.1, rotate: 5 }}
-            className="p-3 rounded-xl transition-all duration-300"
+            className="p-3 rounded-xl transition-all duration-300 border-[3px] shadow-md"
             style={{
-              backgroundColor: service.color,
+              borderColor: darkerColor,
+              backgroundColor: service.color + '20',
+              boxShadow: `0 2px 8px ${service.color}30`,
             }}
           >
             {IconComponent && (
               <IconComponent
-                className="w-7 h-7 transition-all"
-                color="white"
-                strokeWidth={2}
+                className="w-7 h-7 transition-all drop-shadow-sm"
+                style={{ color: darkerColor }}
+                strokeWidth={2.5}
               />
             )}
           </motion.div>
-        </div>
 
-        {/* Industry badge */}
-        <span
-          className="inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3 uppercase tracking-wider"
-          style={{ 
-            backgroundColor: service.color, 
-            color: "white",
-            opacity: 0.9
-          }}
-        >
-          {service.industry.toUpperCase()}
-        </span>
+          {/* Industry badge with better contrast */}
+          <span
+            className="inline-block px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm"
+            style={{ 
+              backgroundColor: darkerColor, 
+              color: getContrastColor(darkerColor),
+            }}
+          >
+            {service.industry.toUpperCase()}
+          </span>
+        </div>
 
         {/* Title */}
         <h3 className="text-xl font-bold mb-2 text-slate-900">
           {service.title}
         </h3>
-
-        {/* Premium badge */}
-        {service.premium && (
-          <div className="inline-block mb-3">
-            <span className="text-xs font-semibold text-primary">
-              ⭐ PREMIUM
-            </span>
-          </div>
-        )}
 
         {/* Description */}
         <p className="text-slate-600 mb-6 text-sm leading-relaxed">
@@ -104,8 +121,8 @@ const ServiceCard = ({ service }) => {
               className="flex items-start gap-3 text-sm text-slate-700"
             >
               <span
-                className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold"
-                style={{ backgroundColor: service.color }}
+                className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-white text-xs font-bold shadow-sm"
+                style={{ backgroundColor: darkerColor }}
               >
                 ✓
               </span>
@@ -114,11 +131,11 @@ const ServiceCard = ({ service }) => {
           ))}
         </ul>
 
-        {/* Call to action */}
+        {/* Call to action with better visibility */}
         <motion.button
           whileHover={{ x: 5 }}
-          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-all"
-          style={{ color: service.color }}
+          className="mt-6 inline-flex items-center gap-2 text-sm font-bold transition-all hover:gap-3"
+          style={{ color: darkerColor }}
         >
           Learn More <span>→</span>
         </motion.button>

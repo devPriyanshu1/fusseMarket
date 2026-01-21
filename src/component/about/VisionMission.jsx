@@ -27,11 +27,12 @@ const VisionMission = () => {
             </p>
           </div>
 
-          {/* Right – Mission (DARK BRAND CARD) */}
+          {/* Right – Mission */}
           <div className="relative rounded-3xl p-10 bg-gradient-to-br from-rose-900 via-primary to-pink-900 text-white shadow-2xl">
             <Target className="w-8 h-8 mb-6 opacity-90" />
 
-            <h3 className="text-3xl font-bold mb-4">
+            {/* FIX: force heading to white */}
+            <h3 className="text-3xl font-bold mb-4 text-white">
               Our Mission
             </h3>
 

@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from "react";
-import { testimonialsData } from "../../data/testimonialsData";
+import { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Container from "../common/Container";
 import SectionHeader from "../common/SectionHeader";
-import { motion } from "framer-motion";
+import { testimonialsData } from "../../data/testimonialsData";
 
-const SLIDE_DELAY = 3000;
+const AUTO_SLIDE_INTERVAL = 3000;
 
 const Testimonials = () => {
   const [index, setIndex] = useState(0);
@@ -46,8 +46,14 @@ const Testimonials = () => {
     };
   }, [total, index]);
 
-  const getItem = (offset) =>
-    testimonialsData[(index + offset + total) % total];
+  const getItem = (offset) => {
+    const i =
+      (index + offset + testimonialsData.length) %
+      testimonialsData.length;
+    return testimonialsData[i];
+  };
+
+  const cards = [getItem(-1), getItem(0), getItem(1)];
 
   return (
     <section className="py-24 md:py-32 bg-gradient-to-b from-white via-[--color-light] to-white overflow-hidden relative">
@@ -71,7 +77,7 @@ const Testimonials = () => {
         <SectionHeader
           title="What Our Clients Say"
           subtitle="Trusted by growing brands across industries"
-          center
+          centered
         />
 
         <div className="relative mt-16 md:mt-20">
@@ -105,13 +111,10 @@ const Testimonials = () => {
                 >
                   {/* IMAGE */}
                   <motion.img
-                    key={`image-${item.id}`}
                     src={item.logo}
                     alt={item.name}
                     className="absolute inset-0 w-full h-full object-cover"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
+                    whileHover={{ scale: 1.06 }}
                     transition={{ duration: 0.6 }}
                     whileHover={{ scale: 1.05 }}
                   />

@@ -12,7 +12,8 @@ const Expertise = () => {
   return (
     <section className="relative py-32 bg-slate-50">
       <Container>
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        {/* FIX 1: items-stretch */}
+        <div className="grid lg:grid-cols-2 gap-20 items-stretch">
 
           {/* LEFT CONTENT */}
           <div>
@@ -40,26 +41,22 @@ const Expertise = () => {
             </div>
           </div>
 
-          {/* RIGHT PREMIUM BLUISH CARD */}
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
+          {/* RIGHT PREMIUM CARD */}
+          {/* FIX 2: h-full + flex */}
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl h-full flex">
 
-            {/* BLUISH NAVY GRADIENT (MAIN FIX) */}
+            {/* BLUISH NAVY GRADIENT */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#0b1220] via-[#111827] to-[#1e293b]" />
 
-            {/* SOFT DEPTH OVERLAY (NOT BLACK) */}
+            {/* SOFT DEPTH OVERLAY */}
             <div className="absolute inset-0 bg-[#020617]/20" />
 
             {/* SUBTLE LIGHT BLOOM */}
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(99,102,241,0.15),transparent_60%)]" />
 
             {/* CONTENT */}
-            <div className="relative p-12">
-
-              {/* ABOUT US BADGE */}
-              <span className="inline-flex items-center px-4 py-1.5 mb-5 text-xs font-semibold tracking-wide text-indigo-300 bg-indigo-500/10 rounded-full border border-indigo-400/20">
-                About Us
-              </span>
-
+            {/* FIX 3: flex + justify-center */}
+            <div className="relative p-12 flex flex-col justify-center">
               <h3 className="text-3xl font-bold text-white mb-4">
                 Strategy-led execution
               </h3>
