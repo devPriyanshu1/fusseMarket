@@ -28,9 +28,16 @@ const Footer = () => {
 
   const socialLinks = [
     { Icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { Icon: Twitter, href: "https://twitter.com", label: "Twitter" },
-    { Icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
-    { Icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+    {
+      Icon: Linkedin,
+      href: "https://www.linkedin.com/company/thefussemarket/",
+      label: "LinkedIn",
+    },
+    {
+      Icon: Instagram,
+      href: "https://www.instagram.com/the_fusse_market/",
+      label: "Instagram",
+    },
   ];
 
   const contactInfo = [
@@ -95,11 +102,9 @@ const Footer = () => {
                     onClick={() =>
                       window.scrollTo({ top: 0, behavior: "smooth" })
                     }
-                    className="text-slate-400 hover:text-blue-400 transition-colors duration-300 text-sm font-medium h-6 flex items-center group"
+                    className="text-slate-400 hover:text-blue-400 transition-colors duration-300 text-sm font-medium h-6 flex items-center"
                   >
-                    <span className="group-hover:translate-x-1 transition-transform">
-                      {label}
-                    </span>
+                    {label}
                   </Link>
                 </li>
               ))}
@@ -113,14 +118,13 @@ const Footer = () => {
               {services.map((service) => (
                 <li
                   key={service}
-                  className="text-slate-400 hover:text-blue-400 transition-colors cursor-pointer text-sm font-medium h-6 flex items-center group"
+                  className="text-slate-400 hover:text-blue-400 transition-colors cursor-pointer text-sm font-medium h-6 flex items-center"
                 >
                   <Link
                     to="/services"
                     onClick={() =>
                       window.scrollTo({ top: 0, behavior: "smooth" })
                     }
-                    className="group-hover:translate-x-1 transition-transform inline-block"
                   >
                     {service}
                   </Link>
