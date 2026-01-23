@@ -1,23 +1,24 @@
 import { TrendingUp, ShieldCheck, Users, ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom"; // ✅ added
 import Button from "../common/Button";
 import "./Hero.css";
 
 const Hero = () => {
   const [textIndex, setTextIndex] = useState(0);
+
   return (
     <section
       className="relative w-full min-h-[91vh] flex items-center justify-center overflow-hidden [clip-path:polygon(0_0,100%_0,100%_95%,0_100%)] md:[clip-path:polygon(0_0,100%_0,100%_85%,0_100%)]"
       style={{ color: "var(--color-dark)" }}
     >
-      {/* Background overlay image - fixed */}
+      {/* Background overlay image */}
       <div className="hero-background">
         <img
           src="/BackgroundOverlay.png"
           alt="Background overlay"
           className="hero-background-image"
         />
-        {/* Gradient overlay with theme colors */}
         <div className="hero-overlay"></div>
       </div>
 
@@ -38,33 +39,35 @@ const Hero = () => {
             Today
           </h1>
 
+          {/* CTA BUTTONS */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-5 justify-center pt-4 md:pt-6">
-            <button
-              href="/services"
-              size="lg"
+            
+            {/* Discover Services */}
+            <Link
+              to="/services"
               className="inline-flex items-center justify-center px-6 py-3 bg-white accent/90 font-semibold rounded-full hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
               style={{ color: "var(--color-dark)" }}
             >
               Discover Services
               <span className="ml-2">→</span>
-            </button>
+            </Link>
 
-            <button
-              href="/contact"
-              size="lg"
+            {/* Start Conversation */}
+            <Link
+              to="/contact"
               className="inline-flex items-center justify-center px-6 py-3 text-white font-semibold rounded-full hover:bg-white/10 transition-all duration-300 transform hover:scale-105"
               style={{
                 backgroundColor: "var(--color-primary)",
               }}
             >
               Start a Conversation
-            </button>
+            </Link>
           </div>
 
           <div
             className="flex items-center justify-center gap-6 md:gap-8 pt-8 md:pt-12 text-xs sm:text-sm"
             style={{ color: "var(--color-deep-purple)" }}
-          ></div>
+          />
         </div>
       </div>
     </section>
